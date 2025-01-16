@@ -1,14 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://be1eqlu04163l"]
 
-[ext_resource type="Script" path="res://scripts/hud.gd" id="1_fqvch"]
+[ext_resource type="Script" path="res://scripts/levels/hud.gd" id="1_fqvch"]
 [ext_resource type="FontFile" uid="uid://b24t7afsssog7" path="res://assets/fonts/PixelOperator8.ttf" id="2_xl846"]
 
 [node name="HUD" type="Node2D"]
 script = ExtResource("1_fqvch")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 75.0
-offset_bottom = 16.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 80.0
+offset_bottom = 21.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -36,213 +38,213 @@ theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Quit"
 
-[node name="Common" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Common place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Farm" type="Button" parent="MarginContainer/HBoxContainer/Common"]
+[node name="Farm" type="Button" parent="MarginContainer/HBoxContainer/Common place"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Farm"
 
-[node name="Outback" type="Button" parent="MarginContainer/HBoxContainer/Common"]
+[node name="Outback" type="Button" parent="MarginContainer/HBoxContainer/Common place"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Outback"
 
-[node name="Savanna" type="Button" parent="MarginContainer/HBoxContainer/Common"]
+[node name="Savanna" type="Button" parent="MarginContainer/HBoxContainer/Common place"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Savanna"
 
-[node name="Northern Forest" type="Button" parent="MarginContainer/HBoxContainer/Common"]
+[node name="Northern Forest" type="Button" parent="MarginContainer/HBoxContainer/Common place"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Northern Forest"
 
-[node name="City garden" type="Button" parent="MarginContainer/HBoxContainer/Common"]
+[node name="City garden" type="Button" parent="MarginContainer/HBoxContainer/Common place"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "City garden"
 
-[node name="Uncommon" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Uncommon place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Jungle" type="Button" parent="MarginContainer/HBoxContainer/Uncommon"]
+[node name="Jungle" type="Button" parent="MarginContainer/HBoxContainer/Uncommon place"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Jungle"
 
-[node name="Mountain Meadow" type="Button" parent="MarginContainer/HBoxContainer/Uncommon"]
+[node name="Mountain Meadow" type="Button" parent="MarginContainer/HBoxContainer/Uncommon place"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Mountain Meadow"
 
-[node name="Swamp" type="Button" parent="MarginContainer/HBoxContainer/Uncommon"]
+[node name="Swamp" type="Button" parent="MarginContainer/HBoxContainer/Uncommon place"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Swamp"
 
-[node name="Desert Oasis" type="Button" parent="MarginContainer/HBoxContainer/Uncommon"]
+[node name="Desert Oasis" type="Button" parent="MarginContainer/HBoxContainer/Uncommon place"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Desert Oasis"
 
-[node name="Woodland Glade" type="Button" parent="MarginContainer/HBoxContainer/Uncommon"]
+[node name="Woodland Glade" type="Button" parent="MarginContainer/HBoxContainer/Uncommon place"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Woodland Glade"
 
-[node name="Rare" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Rare place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Jurassic Jungle" type="Button" parent="MarginContainer/HBoxContainer/Rare"]
+[node name="Jurassic Jungle" type="Button" parent="MarginContainer/HBoxContainer/Rare place"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Jurassic Jungle"
 
-[node name="Volcanic Zone" type="Button" parent="MarginContainer/HBoxContainer/Rare"]
+[node name="Volcanic Zone" type="Button" parent="MarginContainer/HBoxContainer/Rare place"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Volcanic Zone"
 
-[node name="Ice Age Tundra" type="Button" parent="MarginContainer/HBoxContainer/Rare"]
+[node name="Ice Age Tundra" type="Button" parent="MarginContainer/HBoxContainer/Rare place"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Ice Age Tundra"
 
-[node name="Deep Jungle" type="Button" parent="MarginContainer/HBoxContainer/Rare"]
+[node name="Deep Jungle" type="Button" parent="MarginContainer/HBoxContainer/Rare place"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Deep Jungle"
 
-[node name="Cave System" type="Button" parent="MarginContainer/HBoxContainer/Rare"]
+[node name="Cave System" type="Button" parent="MarginContainer/HBoxContainer/Rare place"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Cave System"
 
-[node name="Epic" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Epic place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Savannah Highlands" type="Button" parent="MarginContainer/HBoxContainer/Epic"]
+[node name="Savannah Highlands" type="Button" parent="MarginContainer/HBoxContainer/Epic place"]
 layout_mode = 2
 text = "Savannah Highlands"
 
-[node name="Antarctic Peninsula" type="Button" parent="MarginContainer/HBoxContainer/Epic"]
+[node name="Antarctic Peninsula" type="Button" parent="MarginContainer/HBoxContainer/Epic place"]
 layout_mode = 2
 text = "Antarctic Peninsula"
 
-[node name="Polar Desert" type="Button" parent="MarginContainer/HBoxContainer/Epic"]
+[node name="Polar Desert" type="Button" parent="MarginContainer/HBoxContainer/Epic place"]
 layout_mode = 2
 text = "Polar Desert"
 
-[node name="Floating Islands" type="Button" parent="MarginContainer/HBoxContainer/Epic"]
+[node name="Floating Islands" type="Button" parent="MarginContainer/HBoxContainer/Epic place"]
 layout_mode = 2
 text = "Floating Islands"
 
-[node name="Mystic Swamps" type="Button" parent="MarginContainer/HBoxContainer/Epic"]
+[node name="Mystic Swamps" type="Button" parent="MarginContainer/HBoxContainer/Epic place"]
 layout_mode = 2
 text = "Mystic Swamps"
 
-[node name="Legendary" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Legendary place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Ancient Forest" type="Button" parent="MarginContainer/HBoxContainer/Legendary"]
+[node name="Ancient Forest" type="Button" parent="MarginContainer/HBoxContainer/Legendary place"]
 layout_mode = 2
 text = "Ancient Forest"
 
-[node name="Volcanic Wasteland" type="Button" parent="MarginContainer/HBoxContainer/Legendary"]
+[node name="Volcanic Wasteland" type="Button" parent="MarginContainer/HBoxContainer/Legendary place"]
 layout_mode = 2
 text = "Volcanic Wasteland"
 
-[node name="Celestial Meadows" type="Button" parent="MarginContainer/HBoxContainer/Legendary"]
+[node name="Celestial Meadows" type="Button" parent="MarginContainer/HBoxContainer/Legendary place"]
 layout_mode = 2
 text = "Celestial Meadows"
 
-[node name="Floating Archipelago" type="Button" parent="MarginContainer/HBoxContainer/Legendary"]
+[node name="Floating Archipelago" type="Button" parent="MarginContainer/HBoxContainer/Legendary place"]
 layout_mode = 2
 text = "Floating Archipelago"
 
-[node name="Eternal Winter" type="Button" parent="MarginContainer/HBoxContainer/Legendary"]
+[node name="Eternal Winter" type="Button" parent="MarginContainer/HBoxContainer/Legendary place"]
 layout_mode = 2
 text = "Eternal Winter"
 
-[node name="Abyss" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Abyss place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Mariana Trench" type="Button" parent="MarginContainer/HBoxContainer/Abyss"]
+[node name="Mariana Trench" type="Button" parent="MarginContainer/HBoxContainer/Abyss place"]
 layout_mode = 2
 text = "Mariana Trench"
 
-[node name="Abyssal Plain" type="Button" parent="MarginContainer/HBoxContainer/Abyss"]
+[node name="Abyssal Plain" type="Button" parent="MarginContainer/HBoxContainer/Abyss place"]
 layout_mode = 2
 text = "Abyssal Plain"
 
-[node name="Mid-Ocean Ridge" type="Button" parent="MarginContainer/HBoxContainer/Abyss"]
+[node name="Mid-Ocean Ridge" type="Button" parent="MarginContainer/HBoxContainer/Abyss place"]
 layout_mode = 2
 text = "Mid-Ocean Ridge"
 
-[node name="Deep Sea Hydrothermal Vents" type="Button" parent="MarginContainer/HBoxContainer/Abyss"]
+[node name="Deep Sea Hydrothermal Vents" type="Button" parent="MarginContainer/HBoxContainer/Abyss place"]
 layout_mode = 2
 text = "Deep Sea Hydrothermal Vents"
 
-[node name="Bermuda Triangle" type="Button" parent="MarginContainer/HBoxContainer/Abyss"]
+[node name="Bermuda Triangle" type="Button" parent="MarginContainer/HBoxContainer/Abyss place"]
 layout_mode = 2
 text = "Bermuda Triangle"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Menu/Entrance" to="." method="_on_entrance_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Menu/Option" to="." method="_on_option_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Menu/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Common/Farm" to="." method="_on_farm_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Common/Outback" to="." method="_on_outback_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Common/Savanna" to="." method="_on_savanna_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Common/Northern Forest" to="." method="_on_northern_forest_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Common/City garden" to="." method="_on_city_garden_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon/Jungle" to="." method="_on_jungle_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon/Mountain Meadow" to="." method="_on_mountain_meadow_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon/Swamp" to="." method="_on_swamp_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon/Desert Oasis" to="." method="_on_desert_oasis_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon/Woodland Glade" to="." method="_on_woodland_glade_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare/Jurassic Jungle" to="." method="_on_jurassic_jungle_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare/Volcanic Zone" to="." method="_on_volcanic_zone_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare/Ice Age Tundra" to="." method="_on_ice_age_tundra_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare/Deep Jungle" to="." method="_on_deep_jungle_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare/Cave System" to="." method="_on_cave_system_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic/Savannah Highlands" to="." method="_on_savannah_highlands_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic/Antarctic Peninsula" to="." method="_on_antarctic_peninsula_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic/Polar Desert" to="." method="_on_polar_desert_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic/Floating Islands" to="." method="_on_floating_islands_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic/Mystic Swamps" to="." method="_on_mystic_swamps_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary/Ancient Forest" to="." method="_on_ancient_forest_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary/Volcanic Wasteland" to="." method="_on_volcanic_wasteland_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary/Celestial Meadows" to="." method="_on_celestial_meadows_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary/Floating Archipelago" to="." method="_on_floating_archipelago_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary/Eternal Winter" to="." method="_on_eternal_winter_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss/Mariana Trench" to="." method="_on_mariana_trench_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss/Abyssal Plain" to="." method="_on_abyssal_plain_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss/Mid-Ocean Ridge" to="." method="_on_mid_ocean_ridge_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss/Deep Sea Hydrothermal Vents" to="." method="_on_deep_sea_hydrothermal_vents_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss/Bermuda Triangle" to="." method="_on_bermuda_triangle_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Common place/Farm" to="." method="_on_farm_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Common place/Outback" to="." method="_on_outback_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Common place/Savanna" to="." method="_on_savanna_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Common place/Northern Forest" to="." method="_on_northern_forest_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Common place/City garden" to="." method="_on_city_garden_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon place/Jungle" to="." method="_on_jungle_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon place/Mountain Meadow" to="." method="_on_mountain_meadow_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon place/Swamp" to="." method="_on_swamp_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon place/Desert Oasis" to="." method="_on_desert_oasis_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon place/Woodland Glade" to="." method="_on_woodland_glade_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare place/Jurassic Jungle" to="." method="_on_jurassic_jungle_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare place/Volcanic Zone" to="." method="_on_volcanic_zone_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare place/Ice Age Tundra" to="." method="_on_ice_age_tundra_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare place/Deep Jungle" to="." method="_on_deep_jungle_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare place/Cave System" to="." method="_on_cave_system_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic place/Savannah Highlands" to="." method="_on_savannah_highlands_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic place/Antarctic Peninsula" to="." method="_on_antarctic_peninsula_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic place/Polar Desert" to="." method="_on_polar_desert_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic place/Floating Islands" to="." method="_on_floating_islands_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic place/Mystic Swamps" to="." method="_on_mystic_swamps_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary place/Ancient Forest" to="." method="_on_ancient_forest_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary place/Volcanic Wasteland" to="." method="_on_volcanic_wasteland_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary place/Celestial Meadows" to="." method="_on_celestial_meadows_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary place/Floating Archipelago" to="." method="_on_floating_archipelago_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary place/Eternal Winter" to="." method="_on_eternal_winter_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss place/Mariana Trench" to="." method="_on_mariana_trench_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss place/Abyssal Plain" to="." method="_on_abyssal_plain_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss place/Mid-Ocean Ridge" to="." method="_on_mid_ocean_ridge_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss place/Deep Sea Hydrothermal Vents" to="." method="_on_deep_sea_hydrothermal_vents_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss place/Bermuda Triangle" to="." method="_on_bermuda_triangle_pressed"]

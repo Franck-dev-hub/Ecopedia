@@ -1,0 +1,403 @@
+[gd_scene load_steps=8 format=3 uid="uid://buxfvkx8vcrrl"]
+
+[ext_resource type="Script" path="res://scripts/levels/place.gd" id="1_vbbl5"]
+[ext_resource type="Texture2D" uid="uid://4fw814p1u7b0" path="res://assets/tilemaps/farm-32.png" id="2_kbck6"]
+[ext_resource type="Script" path="res://scripts/levels/tile_map.gd" id="3_sf0w2"]
+[ext_resource type="PackedScene" uid="uid://cgkovwjfn23kb" path="res://scene/menu/game_gui.tscn" id="4_loa5o"]
+[ext_resource type="Script" path="res://scripts/creature_template.gd" id="5_uxbc3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mxrkh"]
+texture = ExtResource("2_kbck6")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+0:13/0 = 0
+0:14/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_o1p04"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_mxrkh")
+
+[node name="Farm" type="Node2D"]
+script = ExtResource("1_vbbl5")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_o1p04")
+rendering_quadrant_size = 32
+format = 2
+layer_0/name = "Background"
+layer_0/tile_data = PackedInt32Array(65537, 196609, 0, 65545, 262145, 0, 65546, 327681, 0, 655370, 327681, 2, 655361, 196609, 2, 65538, 262145, 0, 65539, 327681, 0, 65540, 196609, 0, 65541, 262145, 0, 65542, 327681, 0, 65543, 196609, 0, 65544, 196609, 0, 131082, 327681, 1, 196618, 327681, 2, 262154, 327681, 0, 327690, 327681, 1, 393226, 327681, 2, 458762, 327681, 1, 524298, 327681, 2, 589834, 327681, 1, 655362, 262145, 2, 655363, 327681, 2, 655364, 196609, 2, 655365, 196609, 2, 655366, 262145, 2, 655367, 327681, 2, 655368, 196609, 2, 655369, 262145, 2, 131073, 196609, 1, 196609, 196609, 2, 262145, 196609, 0, 327681, 196609, 0, 393217, 196609, 1, 458753, 196609, 2, 524289, 196609, 0, 589825, 196609, 1, 131074, 262145, 1, 196610, 262145, 2, 262146, 262145, 0, 327682, 262145, 0, 393218, 262145, 1, 458754, 262145, 2, 524290, 262145, 0, 589826, 262145, 1, 131075, 327681, 1, 196611, 327681, 2, 262147, 327681, 0, 327683, 327681, 0, 393219, 327681, 1, 458755, 196609, 0, 524291, 196609, 1, 589827, 196609, 2, 131076, 196609, 1, 196612, 196609, 2, 262148, 196609, 0, 327684, 196609, 1, 393220, 196609, 2, 458756, 262145, 0, 524292, 196609, 0, 589828, 196609, 1, 131077, 262145, 1, 196613, 196609, 0, 262149, 262145, 0, 327685, 262145, 1, 393221, 196609, 0, 458757, 196609, 1, 524293, 196609, 2, 589829, 196609, 1, 131078, 327681, 1, 196614, 262145, 0, 262150, 327681, 0, 327686, 327681, 1, 393222, 262145, 0, 458758, 262145, 1, 524294, 262145, 2, 589830, 262145, 1, 131079, 196609, 1, 196615, 327681, 0, 262151, 327681, 1, 327687, 327681, 2, 393223, 327681, 0, 458759, 327681, 1, 524295, 327681, 2, 589831, 327681, 1, 131080, 196609, 1, 196616, 196609, 2, 262152, 196609, 0, 327688, 196609, 1, 393224, 196609, 2, 458760, 196609, 1, 524296, 196609, 2, 589832, 196609, 1, 131081, 262145, 1, 196617, 262145, 2, 262153, 262145, 0, 327689, 262145, 1, 393225, 262145, 2, 458761, 262145, 1, 524297, 262145, 2, 589833, 262145, 1)
+layer_1/name = "creature"
+layer_2/name = "Foreground"
+layer_2/tile_data = PackedInt32Array(65537, 1, 0, 131073, 1, 1, 196609, 1, 2, 65538, 65537, 0, 131074, 65537, 1, 196610, 65537, 2, 65539, 131073, 0, 131075, 1, 0, 196611, 1, 1, 65544, 131073, 0, 131080, 131073, 1, 196616, 131073, 2, 65545, 65537, 0, 131081, 65537, 1, 196617, 65537, 2, 65546, 131073, 0, 131082, 131073, 1, 196618, 131073, 2, 524296, 131073, 0, 589832, 131073, 1, 655368, 131073, 2, 524297, 65537, 0, 589833, 65537, 1, 655369, 65537, 2, 524298, 131073, 0, 589834, 131073, 1, 655370, 131073, 2, 524289, 1, 2, 589825, 1, 1, 655361, 1, 2, 524290, 65537, 2, 589826, 65537, 1, 655362, 65537, 2, 524291, 131073, 2, 589827, 131073, 1, 655363, 131073, 2, 458753, 1, 1, 393217, 1, 0, 327681, 1, 1, 262145, 1, 0, 65540, 1, 0, 65541, 65537, 0, 65542, 1, 0, 65543, 65537, 0, 262154, 131073, 0, 327690, 131073, 1, 393226, 131073, 2, 458762, 131073, 2, 655367, 65537, 2, 655366, 1, 2, 655365, 65537, 2, 655364, 1, 2, 589828, 1, 1, 589829, 65537, 1, 589830, 1, 1, 589831, 65537, 1, 524295, 65537, 0, 524294, 131073, 2, 524293, 65537, 2, 524292, 1, 2, 458754, 65537, 1, 393218, 65537, 0, 327682, 65537, 1, 262146, 65537, 0, 131076, 65537, 0, 131077, 131073, 0, 131078, 1, 1, 131079, 65537, 1, 262153, 65537, 0, 327689, 65537, 1, 393225, 65537, 2, 458761, 65537, 2, 458760, 131073, 2, 458759, 65537, 2, 458758, 1, 2, 458757, 65537, 1, 458756, 1, 1, 458755, 131073, 1, 393219, 131073, 0, 327683, 131073, 1, 262147, 1, 2, 196613, 131073, 1, 196614, 1, 2, 196615, 65537, 2, 262151, 131073, 1, 262152, 1, 0, 327688, 131073, 0, 393224, 131073, 1, 393223, 65537, 1, 393222, 1, 1, 393221, 65537, 0, 393220, 1, 0, 327684, 1, 1, 262148, 65537, 2, 262149, 131073, 2, 262150, 131073, 0, 327687, 65537, 0, 327686, 1, 0, 327685, 65537, 1, 196612, 65537, 1)
+script = ExtResource("3_sf0w2")
+
+[node name="GUI" parent="TileMap" instance=ExtResource("4_loa5o")]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 379.0
+offset_bottom = 379.0
+
+[node name="Timer" parent="TileMap/GUI/Stamina" index="0"]
+one_shot = true
+
+[node name="HBoxContainer" parent="TileMap/GUI" index="2"]
+visible = false
+
+[node name="Creatures" type="Node2D" parent="TileMap"]
+
+[node name="Common" type="Node2D" parent="TileMap/Creatures"]
+
+[node name="Ant" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Ant"
+sprite_position = Vector2i(0, 3)
+pattern = [[1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Ladybug" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Ladybug"
+sprite_position = Vector2i(1, 3)
+pattern = [[1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0]]
+
+[node name="Gnat" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Gnat"
+sprite_position = Vector2i(2, 3)
+pattern = [[1, 1, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Moth" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Moth"
+sprite_position = Vector2i(3, 3)
+pattern = [[1, 1, 1, 0, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Grasshopper" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Grasshopper"
+sprite_position = Vector2i(4, 3)
+pattern = [[1, 1, 1, 1, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Praying_mantis" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Praying_mantis"
+sprite_position = Vector2i(5, 3)
+pattern = [[1, 1, 1, 0, 0, 0], [1, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Dandelion" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Dandelion"
+sprite_position = Vector2i(1, 4)
+pattern = [[1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Clover" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Clover"
+sprite_position = Vector2i(1, 4)
+pattern = [[1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0]]
+
+[node name="Daisy" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Daisy"
+sprite_position = Vector2i(2, 4)
+pattern = [[1, 1, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Wild_grass" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Wild_grass"
+sprite_position = Vector2i(3, 4)
+pattern = [[1, 1, 1, 0, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Poppy" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Poppy"
+sprite_position = Vector2i(4, 4)
+pattern = [[1, 1, 1, 1, 0, 0], [1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Calendula" type="Node2D" parent="TileMap/Creatures/Common"]
+script = ExtResource("5_uxbc3")
+creature_name = "Calendula"
+sprite_position = Vector2i(5, 4)
+pattern = [[1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Uncommon" type="Node2D" parent="TileMap/Creatures"]
+
+[node name="Dragonfly" type="Node2D" parent="TileMap/Creatures/Uncommon"]
+script = ExtResource("5_uxbc3")
+creature_name = "Dragonfly"
+rarity = "Uncommon"
+sprite_position = Vector2i(0, 5)
+pattern = [[1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Wild_bee" type="Node2D" parent="TileMap/Creatures/Uncommon"]
+script = ExtResource("5_uxbc3")
+creature_name = "Wild_bee"
+rarity = "Uncommon"
+sprite_position = Vector2i(1, 5)
+pattern = [[1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Butterfly_caterpillar" type="Node2D" parent="TileMap/Creatures/Uncommon"]
+script = ExtResource("5_uxbc3")
+creature_name = "Butterfly_caterpillar"
+rarity = "Uncommon"
+sprite_position = Vector2i(2, 5)
+pattern = [[1, 1, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Cricket" type="Node2D" parent="TileMap/Creatures/Uncommon"]
+script = ExtResource("5_uxbc3")
+creature_name = "Cricket"
+rarity = "Uncommon"
+sprite_position = Vector2i(3, 5)
+pattern = [[1, 1, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Tussock_moth" type="Node2D" parent="TileMap/Creatures/Uncommon"]
+script = ExtResource("5_uxbc3")
+creature_name = "Tussock_moth"
+rarity = "Uncommon"
+sprite_position = Vector2i(4, 5)
+pattern = [[1, 1, 0, 0, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Chamomile" type="Node2D" parent="TileMap/Creatures/Uncommon"]
+script = ExtResource("5_uxbc3")
+creature_name = "Chamomile"
+rarity = "Uncommon"
+sprite_position = Vector2i(0, 6)
+pattern = [[1, 1, 1, 1, 1, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Lavender" type="Node2D" parent="TileMap/Creatures/Uncommon"]
+script = ExtResource("5_uxbc3")
+creature_name = "Lavender"
+rarity = "Uncommon"
+sprite_position = Vector2i(1, 6)
+pattern = [[1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Mint" type="Node2D" parent="TileMap/Creatures/Uncommon"]
+script = ExtResource("5_uxbc3")
+creature_name = "Mint"
+rarity = "Uncommon"
+sprite_position = Vector2i(2, 6)
+pattern = [[1, 1, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Fern" type="Node2D" parent="TileMap/Creatures/Uncommon"]
+script = ExtResource("5_uxbc3")
+creature_name = "Fern"
+rarity = "Uncommon"
+sprite_position = Vector2i(3, 6)
+pattern = [[1, 1, 1, 0, 0, 0], [1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Tomato" type="Node2D" parent="TileMap/Creatures/Uncommon"]
+script = ExtResource("5_uxbc3")
+creature_name = "Tomato"
+rarity = "Uncommon"
+sprite_position = Vector2i(4, 6)
+pattern = [[1, 1, 0, 0, 0, 0], [1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Rare" type="Node2D" parent="TileMap/Creatures"]
+
+[node name="Monarch_butterfly" type="Node2D" parent="TileMap/Creatures/Rare"]
+script = ExtResource("5_uxbc3")
+creature_name = "Monarch_butterfly"
+rarity = "Rare"
+sprite_position = Vector2i(0, 7)
+pattern = [[1, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Rhinoceros_beetle" type="Node2D" parent="TileMap/Creatures/Rare"]
+script = ExtResource("5_uxbc3")
+creature_name = "Rhinoceros_beetle"
+rarity = "Rare"
+sprite_position = Vector2i(1, 7)
+pattern = [[1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Blowfly" type="Node2D" parent="TileMap/Creatures/Rare"]
+script = ExtResource("5_uxbc3")
+creature_name = "Blowfly"
+rarity = "Rare"
+sprite_position = Vector2i(2, 7)
+pattern = [[1, 1, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Jumping_spider" type="Node2D" parent="TileMap/Creatures/Rare"]
+script = ExtResource("5_uxbc3")
+creature_name = "Jumping_spider"
+rarity = "Rare"
+sprite_position = Vector2i(3, 7)
+pattern = [[1, 0, 0, 1, 0, 0], [0, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Giant_sunflower" type="Node2D" parent="TileMap/Creatures/Rare"]
+script = ExtResource("5_uxbc3")
+creature_name = "Giant_sunflower"
+rarity = "Rare"
+sprite_position = Vector2i(0, 8)
+pattern = [[1, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Garden_cactus" type="Node2D" parent="TileMap/Creatures/Rare"]
+script = ExtResource("5_uxbc3")
+creature_name = "Garden_cactus"
+rarity = "Rare"
+sprite_position = Vector2i(1, 8)
+pattern = [[1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Roses" type="Node2D" parent="TileMap/Creatures/Rare"]
+script = ExtResource("5_uxbc3")
+creature_name = "Roses"
+rarity = "Rare"
+sprite_position = Vector2i(2, 8)
+pattern = [[1, 1, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Pumpkin" type="Node2D" parent="TileMap/Creatures/Rare"]
+script = ExtResource("5_uxbc3")
+creature_name = "Pumpkin"
+rarity = "Rare"
+sprite_position = Vector2i(3, 8)
+pattern = [[1, 0, 0, 1, 0, 0], [0, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Epic" type="Node2D" parent="TileMap/Creatures"]
+
+[node name="Atlas_moth" type="Node2D" parent="TileMap/Creatures/Epic"]
+script = ExtResource("5_uxbc3")
+creature_name = "Atlas_moth"
+rarity = "Epic"
+sprite_position = Vector2i(0, 9)
+pattern = [[1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Imperial_dragonfly" type="Node2D" parent="TileMap/Creatures/Epic"]
+script = ExtResource("5_uxbc3")
+creature_name = "Imperial_dragonfly"
+rarity = "Epic"
+sprite_position = Vector2i(1, 9)
+pattern = [[1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Bengal_beetle" type="Node2D" parent="TileMap/Creatures/Epic"]
+script = ExtResource("5_uxbc3")
+creature_name = "Bengal_beetle"
+rarity = "Epic"
+sprite_position = Vector2i(2, 9)
+pattern = [[1, 0, 1, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Carnivorous_plant" type="Node2D" parent="TileMap/Creatures/Epic"]
+script = ExtResource("5_uxbc3")
+creature_name = "Carnivorous_plant"
+rarity = "Epic"
+sprite_position = Vector2i(0, 10)
+pattern = [[1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Giant_cactus" type="Node2D" parent="TileMap/Creatures/Epic"]
+script = ExtResource("5_uxbc3")
+creature_name = "Giant_cactus"
+rarity = "Epic"
+sprite_position = Vector2i(1, 10)
+pattern = [[1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Water_lotus" type="Node2D" parent="TileMap/Creatures/Epic"]
+script = ExtResource("5_uxbc3")
+creature_name = "Water_lotus"
+rarity = "Epic"
+sprite_position = Vector2i(2, 10)
+pattern = [[1, 0, 1, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Legendary" type="Node2D" parent="TileMap/Creatures"]
+
+[node name="Titanus_giganteus" type="Node2D" parent="TileMap/Creatures/Legendary"]
+script = ExtResource("5_uxbc3")
+creature_name = "Titanus_giganteus"
+rarity = "Legendary"
+sprite_position = Vector2i(0, 11)
+pattern = [[1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Blue_morpho_butterfly" type="Node2D" parent="TileMap/Creatures/Legendary"]
+script = ExtResource("5_uxbc3")
+creature_name = "Blue_morpho_butterfly"
+rarity = "Legendary"
+sprite_position = Vector2i(1, 11)
+pattern = [[1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Baobab" type="Node2D" parent="TileMap/Creatures/Legendary"]
+script = ExtResource("5_uxbc3")
+creature_name = "Baobab"
+rarity = "Legendary"
+sprite_position = Vector2i(0, 12)
+pattern = [[1, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Oliver_tree" type="Node2D" parent="TileMap/Creatures/Legendary"]
+script = ExtResource("5_uxbc3")
+creature_name = "Oliver_tree"
+rarity = "Legendary"
+sprite_position = Vector2i(1, 12)
+pattern = [[1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Mythic" type="Node2D" parent="TileMap/Creatures"]
+
+[node name="Titan_beetle" type="Node2D" parent="TileMap/Creatures/Mythic"]
+script = ExtResource("5_uxbc3")
+creature_name = "Titan_beetle"
+rarity = "Mythic"
+sprite_position = Vector2i(0, 13)
+pattern = [[1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[node name="Ghost_orchid" type="Node2D" parent="TileMap/Creatures/Mythic"]
+script = ExtResource("5_uxbc3")
+creature_name = "Ghost_orchid"
+rarity = "Mythic"
+sprite_position = Vector2i(0, 14)
+pattern = [[1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+
+[connection signal="timeout" from="TileMap/GUI/Stamina/Timer" to="TileMap" method="_on_timer_timeout"]
+[connection signal="pressed" from="TileMap/GUI/HBoxContainer/Play again" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="TileMap/GUI/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+
+[editable path="TileMap/GUI"]
