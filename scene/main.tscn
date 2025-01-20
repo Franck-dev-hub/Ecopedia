@@ -1,7 +1,172 @@
-[gd_scene load_steps=3 format=3 uid="uid://be1eqlu04163l"]
+[gd_scene load_steps=28 format=3 uid="uid://be1eqlu04163l"]
 
 [ext_resource type="Script" path="res://scripts/levels/hud.gd" id="1_fqvch"]
+[ext_resource type="PackedScene" uid="uid://ylukf2ldxdxg" path="res://scene/menu/v_menu.tscn" id="2_reck3"]
 [ext_resource type="FontFile" uid="uid://b24t7afsssog7" path="res://assets/fonts/PixelOperator8.ttf" id="2_xl846"]
+[ext_resource type="Script" path="res://scripts/change_scene.gd" id="4_q4dly"]
+[ext_resource type="Theme" uid="uid://cttdu3v2kda3d" path="res://scene/button_theme.tres" id="4_uhig4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dd36m"]
+
+[sub_resource type="Theme" id="Theme_61hyp"]
+default_font = ExtResource("2_xl846")
+default_font_size = 8
+Button/styles/focus = SubResource("StyleBoxEmpty_dd36m")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uypa2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7okx"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.827451, 0.827451, 0.827451, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enkpa"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.690196, 0.690196, 0.690196, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_uvyqo"]
+default_font = ExtResource("2_xl846")
+default_font_size = 8
+Button/styles/focus = SubResource("StyleBoxEmpty_uypa2")
+Button/styles/hover = SubResource("StyleBoxFlat_q7okx")
+Button/styles/normal = SubResource("StyleBoxFlat_enkpa")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x0444"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rs0vt"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.658824, 0.901961, 0.811765, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jj85i"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.298039, 0.686275, 0.313726, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_8nqxr"]
+default_font = ExtResource("2_xl846")
+default_font_size = 8
+Button/styles/focus = SubResource("StyleBoxEmpty_x0444")
+Button/styles/hover = SubResource("StyleBoxFlat_rs0vt")
+Button/styles/normal = SubResource("StyleBoxFlat_jj85i")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61r0e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_33t0t"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.627451, 0.768627, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6do61"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.129412, 0.588235, 0.952941, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_8c84i"]
+default_font = ExtResource("2_xl846")
+default_font_size = 8
+Button/styles/focus = SubResource("StyleBoxEmpty_61r0e")
+Button/styles/hover = SubResource("StyleBoxFlat_33t0t")
+Button/styles/normal = SubResource("StyleBoxFlat_6do61")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hlws"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hm4jp"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.815686, 0.662745, 0.960784, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_va7m7"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.611765, 0.152941, 0.690196, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_4m5qs"]
+default_font = ExtResource("2_xl846")
+default_font_size = 8
+Button/styles/focus = SubResource("StyleBoxEmpty_2hlws")
+Button/styles/hover = SubResource("StyleBoxFlat_hm4jp")
+Button/styles/normal = SubResource("StyleBoxFlat_va7m7")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkwva"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rq2o4"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 0.541176, 0.501961, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6yaj"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 0.321569, 0.321569, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_3cglu"]
+default_font = ExtResource("2_xl846")
+default_font_size = 8
+Button/styles/focus = SubResource("StyleBoxEmpty_gkwva")
+Button/styles/hover = SubResource("StyleBoxFlat_rq2o4")
+Button/styles/normal = SubResource("StyleBoxFlat_e6yaj")
 
 [node name="HUD" type="Node2D"]
 script = ExtResource("1_fqvch")
@@ -14,237 +179,366 @@ offset_bottom = 21.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme = SubResource("Theme_61hyp")
 
-[node name="Menu" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="V_Places" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Entrance" type="Button" parent="MarginContainer/HBoxContainer/Menu"]
+[node name="V_Common" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+layout_mode = 2
+theme = SubResource("Theme_uvyqo")
+
+[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Common" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+text = "Common"
+button_ext_1 = NodePath("../../V_Uncommon")
+button_ext_2 = NodePath("../../V_Rare")
+button_ext_3 = NodePath("../../V_Epic")
+button_ext_4 = NodePath("../../V_Legendary")
+button_ext_5 = NodePath("../../V_Mythic")
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="0"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Farm"
+script = ExtResource("4_q4dly")
+scene_path = "res://scene/levels/farm.tscn"
+
+[node name="Outback" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="1"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
-text = "Entrance"
+text = "Outback"
+script = ExtResource("4_q4dly")
 
-[node name="Option" type="Button" parent="MarginContainer/HBoxContainer/Menu"]
+[node name="Savanna" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="2"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Savanna"
+script = ExtResource("4_q4dly")
+
+[node name="Northern Forest" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="3"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Northern Forest"
+script = ExtResource("4_q4dly")
+
+[node name="City garden" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="4"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "City garden"
+script = ExtResource("4_q4dly")
+
+[node name="V_Uncommon" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_8nqxr")
+
+[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+text = "Uncommon"
+button_ext_1 = NodePath("../../V_Common")
+button_ext_2 = NodePath("../../V_Rare")
+button_ext_3 = NodePath("../../V_Epic")
+button_ext_4 = NodePath("../../V_Legendary")
+button_ext_5 = NodePath("../../V_Mythic")
+
+[node name="Uncommon place" type="VBoxContainer" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu" index="0"]
+layout_mode = 2
+
+[node name="Jungle" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Jungle"
+script = ExtResource("4_q4dly")
+
+[node name="Mountain Meadow" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Mountain Meadow"
+script = ExtResource("4_q4dly")
+
+[node name="Swamp" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Swamp"
+script = ExtResource("4_q4dly")
+
+[node name="Desert Oasis" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Desert Oasis"
+script = ExtResource("4_q4dly")
+
+[node name="Woodland Glade" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Woodland Glade"
+script = ExtResource("4_q4dly")
+
+[node name="V_Rare" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_8c84i")
+
+[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+text = "Rare"
+button_ext_1 = NodePath("../../V_Common")
+button_ext_2 = NodePath("../../V_Uncommon")
+button_ext_3 = NodePath("../../V_Epic")
+button_ext_4 = NodePath("../../V_Legendary")
+button_ext_5 = NodePath("../../V_Mythic")
+
+[node name="Rare place" type="VBoxContainer" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu" index="0"]
+layout_mode = 2
+
+[node name="Jurassic Jungle" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Jurassic Jungle"
+script = ExtResource("4_q4dly")
+
+[node name="Volcanic Zone" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Volcanic Zone"
+script = ExtResource("4_q4dly")
+
+[node name="Ice Age Tundra" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Ice Age Tundra"
+script = ExtResource("4_q4dly")
+
+[node name="Deep Jungle" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Deep Jungle"
+script = ExtResource("4_q4dly")
+
+[node name="Cave System" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Cave System"
+script = ExtResource("4_q4dly")
+
+[node name="V_Epic" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_4m5qs")
+
+[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+text = "Epic"
+button_ext_1 = NodePath("../../V_Common")
+button_ext_2 = NodePath("../../V_Uncommon")
+button_ext_3 = NodePath("../../V_Rare")
+button_ext_4 = NodePath("../../V_Legendary")
+button_ext_5 = NodePath("../../V_Mythic")
+
+[node name="Epic place" type="VBoxContainer" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu" index="0"]
+layout_mode = 2
+
+[node name="Savannah Highlands" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Savannah Highlands"
+script = ExtResource("4_q4dly")
+
+[node name="Antarctic Peninsula" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Antarctic Peninsula"
+script = ExtResource("4_q4dly")
+
+[node name="Polar Desert" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Polar Desert"
+script = ExtResource("4_q4dly")
+
+[node name="Floating Islands" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Floating Islands"
+script = ExtResource("4_q4dly")
+
+[node name="Mystic Swamps" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Mystic Swamps"
+script = ExtResource("4_q4dly")
+
+[node name="V_Legendary" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+visible = false
+layout_mode = 2
+theme = ExtResource("4_uhig4")
+
+[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+text = "Legendary"
+button_ext_1 = NodePath("../../V_Common")
+button_ext_2 = NodePath("../../V_Uncommon")
+button_ext_3 = NodePath("../../V_Rare")
+button_ext_4 = NodePath("../../V_Epic")
+button_ext_5 = NodePath("../../V_Mythic")
+
+[node name="Legendary place" type="VBoxContainer" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu" index="0"]
+layout_mode = 2
+
+[node name="Ancient Forest" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Ancient Forest"
+script = ExtResource("4_q4dly")
+
+[node name="Volcanic Wasteland" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Volcanic Wasteland"
+script = ExtResource("4_q4dly")
+
+[node name="Celestial Meadows" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Celestial Meadows"
+script = ExtResource("4_q4dly")
+
+[node name="Floating Archipelago" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Floating Archipelago"
+script = ExtResource("4_q4dly")
+
+[node name="Eternal Winter" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Eternal Winter"
+script = ExtResource("4_q4dly")
+
+[node name="V_Mythic" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_3cglu")
+
+[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+text = "Mythic"
+button_ext_1 = NodePath("../../V_Common")
+button_ext_2 = NodePath("../../V_Uncommon")
+button_ext_3 = NodePath("../../V_Rare")
+button_ext_4 = NodePath("../../V_Epic")
+button_ext_5 = NodePath("../../V_Legendary")
+
+[node name="Abyss place" type="VBoxContainer" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu" index="0"]
+layout_mode = 2
+
+[node name="Mariana Trench" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Mariana Trench"
+script = ExtResource("4_q4dly")
+
+[node name="Abyssal Plain" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Abyssal Plain"
+script = ExtResource("4_q4dly")
+
+[node name="Mid-Ocean Ridge" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Mid-Ocean Ridge"
+script = ExtResource("4_q4dly")
+
+[node name="Deep Sea Hydrothermal Vents" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Deep Sea Hydrothermal Vents"
+script = ExtResource("4_q4dly")
+
+[node name="Bermuda Triangle" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Bermuda Triangle"
+script = ExtResource("4_q4dly")
+
+[node name="Option" type="Button" parent="MarginContainer/HBoxContainer/V_Places"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Option"
 
-[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/Menu"]
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/V_Places"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Quit"
 
-[node name="Common place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Button" to="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Button" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Outback" to="." method="_on_outback_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Savanna" to="." method="_on_savanna_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Northern Forest" to="." method="_on_northern_forest_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/City garden" to="." method="_on_city_garden_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Jungle" to="." method="_on_jungle_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Mountain Meadow" to="." method="_on_mountain_meadow_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Swamp" to="." method="_on_swamp_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Desert Oasis" to="." method="_on_desert_oasis_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Woodland Glade" to="." method="_on_woodland_glade_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Jurassic Jungle" to="." method="_on_jurassic_jungle_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Volcanic Zone" to="." method="_on_volcanic_zone_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Ice Age Tundra" to="." method="_on_ice_age_tundra_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Deep Jungle" to="." method="_on_deep_jungle_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Cave System" to="." method="_on_cave_system_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Savannah Highlands" to="." method="_on_savannah_highlands_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Antarctic Peninsula" to="." method="_on_antarctic_peninsula_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Polar Desert" to="." method="_on_polar_desert_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Floating Islands" to="." method="_on_floating_islands_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Mystic Swamps" to="." method="_on_mystic_swamps_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Ancient Forest" to="." method="_on_ancient_forest_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Volcanic Wasteland" to="." method="_on_volcanic_wasteland_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Celestial Meadows" to="." method="_on_celestial_meadows_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Floating Archipelago" to="." method="_on_floating_archipelago_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Eternal Winter" to="." method="_on_eternal_winter_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Mariana Trench" to="." method="_on_mariana_trench_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Abyssal Plain" to="." method="_on_abyssal_plain_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Mid-Ocean Ridge" to="." method="_on_mid_ocean_ridge_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Deep Sea Hydrothermal Vents" to="." method="_on_deep_sea_hydrothermal_vents_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Bermuda Triangle" to="." method="_on_bermuda_triangle_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/Quit" to="." method="_on_quit_pressed"]
 
-[node name="Farm" type="Button" parent="MarginContainer/HBoxContainer/Common place"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Farm"
-
-[node name="Outback" type="Button" parent="MarginContainer/HBoxContainer/Common place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Outback"
-
-[node name="Savanna" type="Button" parent="MarginContainer/HBoxContainer/Common place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Savanna"
-
-[node name="Northern Forest" type="Button" parent="MarginContainer/HBoxContainer/Common place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Northern Forest"
-
-[node name="City garden" type="Button" parent="MarginContainer/HBoxContainer/Common place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "City garden"
-
-[node name="Uncommon place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Jungle" type="Button" parent="MarginContainer/HBoxContainer/Uncommon place"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Jungle"
-
-[node name="Mountain Meadow" type="Button" parent="MarginContainer/HBoxContainer/Uncommon place"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Mountain Meadow"
-
-[node name="Swamp" type="Button" parent="MarginContainer/HBoxContainer/Uncommon place"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Swamp"
-
-[node name="Desert Oasis" type="Button" parent="MarginContainer/HBoxContainer/Uncommon place"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Desert Oasis"
-
-[node name="Woodland Glade" type="Button" parent="MarginContainer/HBoxContainer/Uncommon place"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Woodland Glade"
-
-[node name="Rare place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Jurassic Jungle" type="Button" parent="MarginContainer/HBoxContainer/Rare place"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Jurassic Jungle"
-
-[node name="Volcanic Zone" type="Button" parent="MarginContainer/HBoxContainer/Rare place"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Volcanic Zone"
-
-[node name="Ice Age Tundra" type="Button" parent="MarginContainer/HBoxContainer/Rare place"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Ice Age Tundra"
-
-[node name="Deep Jungle" type="Button" parent="MarginContainer/HBoxContainer/Rare place"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Deep Jungle"
-
-[node name="Cave System" type="Button" parent="MarginContainer/HBoxContainer/Rare place"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Cave System"
-
-[node name="Epic place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Savannah Highlands" type="Button" parent="MarginContainer/HBoxContainer/Epic place"]
-layout_mode = 2
-text = "Savannah Highlands"
-
-[node name="Antarctic Peninsula" type="Button" parent="MarginContainer/HBoxContainer/Epic place"]
-layout_mode = 2
-text = "Antarctic Peninsula"
-
-[node name="Polar Desert" type="Button" parent="MarginContainer/HBoxContainer/Epic place"]
-layout_mode = 2
-text = "Polar Desert"
-
-[node name="Floating Islands" type="Button" parent="MarginContainer/HBoxContainer/Epic place"]
-layout_mode = 2
-text = "Floating Islands"
-
-[node name="Mystic Swamps" type="Button" parent="MarginContainer/HBoxContainer/Epic place"]
-layout_mode = 2
-text = "Mystic Swamps"
-
-[node name="Legendary place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Ancient Forest" type="Button" parent="MarginContainer/HBoxContainer/Legendary place"]
-layout_mode = 2
-text = "Ancient Forest"
-
-[node name="Volcanic Wasteland" type="Button" parent="MarginContainer/HBoxContainer/Legendary place"]
-layout_mode = 2
-text = "Volcanic Wasteland"
-
-[node name="Celestial Meadows" type="Button" parent="MarginContainer/HBoxContainer/Legendary place"]
-layout_mode = 2
-text = "Celestial Meadows"
-
-[node name="Floating Archipelago" type="Button" parent="MarginContainer/HBoxContainer/Legendary place"]
-layout_mode = 2
-text = "Floating Archipelago"
-
-[node name="Eternal Winter" type="Button" parent="MarginContainer/HBoxContainer/Legendary place"]
-layout_mode = 2
-text = "Eternal Winter"
-
-[node name="Abyss place" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Mariana Trench" type="Button" parent="MarginContainer/HBoxContainer/Abyss place"]
-layout_mode = 2
-text = "Mariana Trench"
-
-[node name="Abyssal Plain" type="Button" parent="MarginContainer/HBoxContainer/Abyss place"]
-layout_mode = 2
-text = "Abyssal Plain"
-
-[node name="Mid-Ocean Ridge" type="Button" parent="MarginContainer/HBoxContainer/Abyss place"]
-layout_mode = 2
-text = "Mid-Ocean Ridge"
-
-[node name="Deep Sea Hydrothermal Vents" type="Button" parent="MarginContainer/HBoxContainer/Abyss place"]
-layout_mode = 2
-text = "Deep Sea Hydrothermal Vents"
-
-[node name="Bermuda Triangle" type="Button" parent="MarginContainer/HBoxContainer/Abyss place"]
-layout_mode = 2
-text = "Bermuda Triangle"
-
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Menu/Entrance" to="." method="_on_entrance_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Menu/Option" to="." method="_on_option_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Menu/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Common place/Farm" to="." method="_on_farm_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Common place/Outback" to="." method="_on_outback_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Common place/Savanna" to="." method="_on_savanna_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Common place/Northern Forest" to="." method="_on_northern_forest_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Common place/City garden" to="." method="_on_city_garden_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon place/Jungle" to="." method="_on_jungle_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon place/Mountain Meadow" to="." method="_on_mountain_meadow_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon place/Swamp" to="." method="_on_swamp_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon place/Desert Oasis" to="." method="_on_desert_oasis_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Uncommon place/Woodland Glade" to="." method="_on_woodland_glade_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare place/Jurassic Jungle" to="." method="_on_jurassic_jungle_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare place/Volcanic Zone" to="." method="_on_volcanic_zone_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare place/Ice Age Tundra" to="." method="_on_ice_age_tundra_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare place/Deep Jungle" to="." method="_on_deep_jungle_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Rare place/Cave System" to="." method="_on_cave_system_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic place/Savannah Highlands" to="." method="_on_savannah_highlands_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic place/Antarctic Peninsula" to="." method="_on_antarctic_peninsula_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic place/Polar Desert" to="." method="_on_polar_desert_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic place/Floating Islands" to="." method="_on_floating_islands_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Epic place/Mystic Swamps" to="." method="_on_mystic_swamps_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary place/Ancient Forest" to="." method="_on_ancient_forest_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary place/Volcanic Wasteland" to="." method="_on_volcanic_wasteland_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary place/Celestial Meadows" to="." method="_on_celestial_meadows_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary place/Floating Archipelago" to="." method="_on_floating_archipelago_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Legendary place/Eternal Winter" to="." method="_on_eternal_winter_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss place/Mariana Trench" to="." method="_on_mariana_trench_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss place/Abyssal Plain" to="." method="_on_abyssal_plain_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss place/Mid-Ocean Ridge" to="." method="_on_mid_ocean_ridge_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss place/Deep Sea Hydrothermal Vents" to="." method="_on_deep_sea_hydrothermal_vents_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Abyss place/Bermuda Triangle" to="." method="_on_bermuda_triangle_pressed"]
+[editable path="MarginContainer/HBoxContainer/V_Places/V_Common"]
+[editable path="MarginContainer/HBoxContainer/V_Places/V_Uncommon"]
+[editable path="MarginContainer/HBoxContainer/V_Places/V_Rare"]
+[editable path="MarginContainer/HBoxContainer/V_Places/V_Epic"]
+[editable path="MarginContainer/HBoxContainer/V_Places/V_Legendary"]
+[editable path="MarginContainer/HBoxContainer/V_Places/V_Mythic"]

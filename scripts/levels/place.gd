@@ -2,7 +2,8 @@ extends Node2D
 
 @onready var stamina_label: Label = $TileMap/GUI/Stamina
 @onready var tile_map: TileMap = $TileMap
-@onready var h_box_container: HBoxContainer = $TileMap/GUI/HBoxContainer
+@onready var h_box_container: HBoxContainer = $TileMap/GUI/GameEnd
+@onready var hint_panel: Control = $TileMap/GUI/HintPanel
 
 @export var stamina: int = 100
 
@@ -49,12 +50,15 @@ func update_stamina() -> void:
 func game_end():
 	if h_box_container != null:
 		h_box_container.visible = true
+		hint_panel.visible = false
 	else:
 		get_tree().quit()
 
 
 func _on_play_again_pressed() -> void:
+	print("play again")
 	get_tree().reload_current_scene()
 
-func _on_quit_pressed() -> void:
+func _on_return_pressed() -> void:
+	print("return")
 	get_tree().change_scene_to_file("res://scene/main.tscn")

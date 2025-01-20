@@ -22,11 +22,11 @@ Global="*res://scripts/global.gd"
 
 [display]
 
-window/size/viewport_width=384
-window/size/viewport_height=384
+window/size/viewport_width=256
+window/size/viewport_height=352
 window/size/resizable=false
-window/size/window_width_override=1200
-window/size/window_height_override=1200
+window/size/window_width_override=768
+window/size/window_height_override=1056
 window/stretch/mode="viewport"
 window/handheld/orientation=1
 

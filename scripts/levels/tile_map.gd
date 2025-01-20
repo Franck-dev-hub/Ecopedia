@@ -4,13 +4,16 @@ extends TileMap
 @onready var farm: Node2D = $".."
 @onready var timer: Timer = $GUI/Stamina/Timer
 @onready var creatures: Node2D = $Creatures
+@onready var hint_map: TileMapLayer = $GUI/HintPanel/Panel/HintMap
 
 var tiles_id_script
 var tiles_id
 
-# End coordinates
-var max_x: int = 10
-var max_y: int = 10
+# Map coordinates
+var start_x: int = 1
+var start_y: int = 3
+var max_x: int = 7
+var max_y: int = 9
 
 var total_tiles: int = 0
 
@@ -28,6 +31,7 @@ var total_tiles: int = 0
 var creature_by_rarity: Dictionary = {}
 
 func _ready():
+	#set_cell(2, Vector2i(6, 7), 1, Vector2i(0, 14)) # Debug / test
 	tiles_id = {}
 	creature_by_rarity = {
 		"Common": [],
@@ -54,8 +58,23 @@ func _ready():
 			print("Rarity unknown :", rarity_node.name)
 
 	randomize()
+	spawn_tilset()
 	spawn_random_creature()
 	score_label.text = "Score: " + str(Global.score)
+
+func spawn_tilset():
+	# Background
+	for x in range(start_x, max_x):
+		for y in range(start_y, max_y):
+			var bg_x_tile = randi_range(3, 5)
+			var bg_y_tile = randi_range(0, 2)
+			set_cell(0, Vector2i(x, y), 1, Vector2i(bg_x_tile, bg_y_tile))
+	# Foreground
+	for x in range(start_x, max_x):
+		for y in range(start_y, max_y):
+			var fg_x_tile = randi_range(0, 2)
+			var fg_y_tile = randi_range(0, 2)
+			set_cell(2, Vector2i(x, y), 1, Vector2i(fg_x_tile, fg_y_tile))
 
 # Load all creatures
 func load_all_creatures():
@@ -89,8 +108,8 @@ func spawn_random_creature():
 		pattern_width = max(pattern_width, row.size())
 
 	# Random positionement for pattern
-	var x = randi_range(1, max_x - pattern_width)
-	var y = randi_range(1, max_y - pattern_height)
+	var x = randi_range(start_x, max_x - pattern_width)
+	var y = randi_range(start_y, max_y - pattern_height)
 	var start_pos = Vector2i(x, y)
 
 	print("Name : ", random_creature.creature_name)
@@ -98,7 +117,6 @@ func spawn_random_creature():
 
 	# Display pattern
 	show_pattern_at_position(pattern, start_pos, random_creature.creature_name)
-
 
 # Place pattern on tilemap
 func show_pattern_at_position(pattern, start_pos: Vector2i, creature_name: String):
@@ -108,11 +126,14 @@ func show_pattern_at_position(pattern, start_pos: Vector2i, creature_name: Strin
 	if tiles_id.has(lower_creature_name):
 		var atlas_coords = tiles_id[lower_creature_name]
 
+		# Display hint
+		hint_map.hint(pattern, creature_name, atlas_coords)
+
 		# Place pattern
 		for y in range(pattern.size()):
 			for x in range(pattern[y].size()):
 				if pattern[y][x] != 0:  # Tile not empty
-					set_cell(1, Vector2(start_pos.x + x, start_pos.y + y), 1, atlas_coords)
+					set_cell(1, Vector2i(start_pos.x + x, start_pos.y + y), 1, atlas_coords)
 					total_tiles += 1
 
 # Random rarity selection
@@ -139,7 +160,7 @@ func discovered():
 	score_label.text = "Score: " + str(Global.score)
 	for i in range(max_x + 1):
 		for j in range(max_y + 1):
-			erase_cell(2, Vector2(i, j))
+			erase_cell(2, Vector2i(i, j))
 
 func _on_timer_timeout() -> void:
 	print("end")
