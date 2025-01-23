@@ -1,11 +1,12 @@
 extends Node2D
 
-@onready var stamina_label: Label = $TileMap/GUI/Stamina
+@onready var stamina_label: Label = $GUI/Stamina
 @onready var tile_map: TileMap = $TileMap
-@onready var h_box_container: HBoxContainer = $TileMap/GUI/GameEnd
-@onready var hint_panel: Control = $TileMap/GUI/HintPanel
+@onready var h_box_container: HBoxContainer = $GUI/GameEnd
+@onready var hint_panel: Control = $GUI/HintPanel
+@onready var panel: TextureRect = $GUI/HintPanel/Panel
 
-@export var stamina: int = 100
+@export var stamina: int = 10
 
 var tile_count: int = 0
 var clicked_cells: Array = []
@@ -14,8 +15,8 @@ func _ready() -> void:
 	h_box_container.visible = false
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("left_click"):
-		# Conversion de la position de la souris en coordonnées de tuiles
+	if Input.is_action_just_pressed("left_click") and not panel.visible:
+		# Set mouse position into tile position
 		var tile_pos: Vector2i = tile_map.local_to_map(to_local(get_global_mouse_position()))
 		var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
 
@@ -32,17 +33,17 @@ func _process(_delta: float) -> void:
 				stamina -= 1
 				update_stamina()
 
-			# Debug
 			if tile_creature:
 				tile_count += 1
 				if tile_count == tile_map.total_tiles:
-					tile_map.discovered()
+					tile_map.discover(true)
 
 			# Efface la cellule
 			tile_map.erase_cell(2, tile_pos)
 			
-	if stamina == 0:
-		game_end()
+		if stamina == 0:
+			tile_map.discover(false)
+			game_end()
 
 func update_stamina() -> void:
 	stamina_label.text = "Stamina: " + str(stamina)
@@ -53,7 +54,6 @@ func game_end():
 		hint_panel.visible = false
 	else:
 		get_tree().quit()
-
 
 func _on_play_again_pressed() -> void:
 	print("play again")

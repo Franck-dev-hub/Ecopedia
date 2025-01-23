@@ -1,59 +1,55 @@
-extends Node
+extends Node2D
 
-var score: int = 0
+var farm_creature_count = {}
+var save_file = "res://misc/creature_save.json"
 
-var farm_creature_count = {
-	# Common
-	"Ant": 0,
-	"Ladybug": 0,
-	"Gnat": 0,
-	"Moth": 0,
-	"Grasshopper": 0,
-	"Praying_mantis": 0,
-	"Dandelion": 0,
-	"Clover": 0,
-	"Daisy": 0,
-	"Wild_grass": 0,
-	"Poppy": 0,
-	"Calendula": 0,
+func _ready():
+	load_json_file()
 
-	# Uncommon
-	"Dragonfly": 0,
-	"Wild_bee": 0,
-	"Butterfly_caterpillar": 0,
-	"Cricket": 0,
-	"Tussock_moth": 0,
-	"Chamomile": 0,
-	"Lavender": 0,
-	"Mint": 0,
-	"Fern": 0,
-	"Tomato": 0,
+func load_json_file() -> void:
+	# Check if the file exists
+	if !FileAccess.file_exists(save_file):
+		print("File doesn't find")
+		return
+	
+	# Open the file for reading
+	var file = FileAccess.open(save_file, FileAccess.READ)
+	
+	# Read the content of the file as text
+	var json = file.get_as_text()
+	var json_object = JSON.new()
+	
+	# Parse the JSON text
+	var error = json_object.parse(json)
+	if error != OK:
+		print("Parsing error to JSON")
+		return
+	
+	# Store the parsed data in the content dictionary
+	var parsed_data = json_object.data
+	
+	# Get the 'Farm' data from the parsed JSON and assign it to farm_creature_count
+	if parsed_data.has("Farm"):
+		farm_creature_count = parsed_data["Farm"]
+	else:
+		print("'Farm' does not exist in JSON file.")
 
-	# Rare
-	"Monarch_butterfly": 0,
-	"Rhinoceros_beetle": 0,
-	"Blowfly": 0,
-	"Jumping_spider": 0,
-	"Giant_sunflower": 0,
-	"Garden_cactus": 0,
-	"Roses": 0,
-	"Pumpkin": 0,
+func update_json_file(creature: String, value: int) -> void:
+	if farm_creature_count.has(creature):
+		farm_creature_count[creature] += value
+	else:
+		farm_creature_count[creature] = value
+	write_json_file(farm_creature_count)
 
-	# Epic
-	"Atlas Moth": 0,
-	"Imperial_dragonfly": 0,
-	"Bengal_beetle": 0,
-	"Carnivorous Plant": 0,
-	"Giant_cactus": 0,
-	"Water_lotus": 0,
-
-	# Legendary
-	"Titanus_giganteus": 0,
-	"Blue_morpho_butterfly": 0,
-	"Baobab": 0,
-	"Olive_tree": 0,
-
-	# Mythic
-	"Titan_beetle": 0,
-	"Ghost_orchid": 0
-}
+func write_json_file(data: Dictionary) -> void:
+	# Open the file in write mode
+	var file = FileAccess.open(save_file, FileAccess.ModeFlags.WRITE)
+	
+	if file:
+		# Convert dictionary to JSON text
+		var json_text = JSON.stringify(data, "\t") # Format with tabs
+		# Write the JSON text to the file
+		file.store_string(json_text)
+		print("Data written to the file.")
+	else:
+		print("Failed to open or create the file.")

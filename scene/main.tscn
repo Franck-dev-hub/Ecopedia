@@ -1,10 +1,12 @@
-[gd_scene load_steps=28 format=3 uid="uid://be1eqlu04163l"]
+[gd_scene load_steps=30 format=3 uid="uid://be1eqlu04163l"]
 
 [ext_resource type="Script" path="res://scripts/levels/hud.gd" id="1_fqvch"]
+[ext_resource type="Script" path="res://scripts/swipe.gd" id="2_7rq3u"]
 [ext_resource type="PackedScene" uid="uid://ylukf2ldxdxg" path="res://scene/menu/v_menu.tscn" id="2_reck3"]
 [ext_resource type="FontFile" uid="uid://b24t7afsssog7" path="res://assets/fonts/PixelOperator8.ttf" id="2_xl846"]
 [ext_resource type="Script" path="res://scripts/change_scene.gd" id="4_q4dly"]
 [ext_resource type="Theme" uid="uid://cttdu3v2kda3d" path="res://scene/button_theme.tres" id="4_uhig4"]
+[ext_resource type="PackedScene" uid="uid://cas13ydbqxhhn" path="res://scene/levels/creature.tscn" id="7_ymgka"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dd36m"]
 
@@ -171,24 +173,31 @@ Button/styles/normal = SubResource("StyleBoxFlat_e6yaj")
 [node name="HUD" type="Node2D"]
 script = ExtResource("1_fqvch")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Cameras" type="Node2D" parent="."]
+script = ExtResource("2_7rq3u")
+camera_paths = Array[NodePath]([NodePath("HUB"), NodePath("Common/Farm/Bee"), NodePath("Common/Farm/Ant"), NodePath("Common/Farm/Ladybug"), NodePath("Common/Farm/Fly"), NodePath("Common/Farm/Caterpillar"), NodePath("Common/Farm/Grasshopper"), NodePath("Common/Farm/Dandelion"), NodePath("Common/Farm/Clover"), NodePath("Common/Farm/Daisy"), NodePath("Common/Farm/Wild_grass"), NodePath("Common/Farm/Poppy"), NodePath("Common/Farm/Lavender")])
+
+[node name="HUB" type="Camera2D" parent="Cameras"]
+anchor_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Cameras/HUB"]
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 80.0
-offset_bottom = 21.0
+offset_bottom = 53.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Cameras/HUB/MarginContainer"]
 layout_mode = 2
 theme = SubResource("Theme_61hyp")
 
-[node name="V_Places" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="V_Places" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="V_Common" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+[node name="V_Common" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
 layout_mode = 2
 theme = SubResource("Theme_uvyqo")
 
-[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Common" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
 text = "Common"
 button_ext_1 = NodePath("../../V_Uncommon")
 button_ext_2 = NodePath("../../V_Rare")
@@ -196,7 +205,7 @@ button_ext_3 = NodePath("../../V_Epic")
 button_ext_4 = NodePath("../../V_Legendary")
 button_ext_5 = NodePath("../../V_Mythic")
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="0"]
+[node name="Farm" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="0"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
@@ -204,7 +213,7 @@ text = "Farm"
 script = ExtResource("4_q4dly")
 scene_path = "res://scene/levels/farm.tscn"
 
-[node name="Outback" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="1"]
+[node name="Outback" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="1"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
@@ -212,7 +221,7 @@ theme_override_font_sizes/font_size = 8
 text = "Outback"
 script = ExtResource("4_q4dly")
 
-[node name="Savanna" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="2"]
+[node name="Savanna" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="2"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
@@ -220,7 +229,7 @@ theme_override_font_sizes/font_size = 8
 text = "Savanna"
 script = ExtResource("4_q4dly")
 
-[node name="Northern Forest" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="3"]
+[node name="Northern Forest" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="3"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
@@ -228,7 +237,7 @@ theme_override_font_sizes/font_size = 8
 text = "Northern Forest"
 script = ExtResource("4_q4dly")
 
-[node name="City garden" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="4"]
+[node name="City garden" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="4"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
@@ -236,12 +245,13 @@ theme_override_font_sizes/font_size = 8
 text = "City garden"
 script = ExtResource("4_q4dly")
 
-[node name="V_Uncommon" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+[node name="V_Uncommon" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
 visible = false
 layout_mode = 2
 theme = SubResource("Theme_8nqxr")
 
-[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+visible = false
 text = "Uncommon"
 button_ext_1 = NodePath("../../V_Common")
 button_ext_2 = NodePath("../../V_Rare")
@@ -249,50 +259,60 @@ button_ext_3 = NodePath("../../V_Epic")
 button_ext_4 = NodePath("../../V_Legendary")
 button_ext_5 = NodePath("../../V_Mythic")
 
-[node name="Uncommon place" type="VBoxContainer" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu" index="0"]
+[node name="Menu" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon" index="1"]
+visible = false
+
+[node name="Uncommon place" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu" index="0"]
+visible = false
 layout_mode = 2
 
-[node name="Jungle" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+[node name="Jungle" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Jungle"
 script = ExtResource("4_q4dly")
 
-[node name="Mountain Meadow" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+[node name="Mountain Meadow" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Mountain Meadow"
 script = ExtResource("4_q4dly")
 
-[node name="Swamp" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+[node name="Swamp" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Swamp"
 script = ExtResource("4_q4dly")
 
-[node name="Desert Oasis" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+[node name="Desert Oasis" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Desert Oasis"
 script = ExtResource("4_q4dly")
 
-[node name="Woodland Glade" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+[node name="Woodland Glade" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Woodland Glade"
 script = ExtResource("4_q4dly")
 
-[node name="V_Rare" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+[node name="V_Rare" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
 visible = false
 layout_mode = 2
 theme = SubResource("Theme_8c84i")
 
-[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+visible = false
 text = "Rare"
 button_ext_1 = NodePath("../../V_Common")
 button_ext_2 = NodePath("../../V_Uncommon")
@@ -300,50 +320,60 @@ button_ext_3 = NodePath("../../V_Epic")
 button_ext_4 = NodePath("../../V_Legendary")
 button_ext_5 = NodePath("../../V_Mythic")
 
-[node name="Rare place" type="VBoxContainer" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu" index="0"]
+[node name="Menu" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare" index="1"]
+visible = false
+
+[node name="Rare place" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu" index="0"]
+visible = false
 layout_mode = 2
 
-[node name="Jurassic Jungle" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+[node name="Jurassic" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Jurassic Jungle"
 script = ExtResource("4_q4dly")
 
-[node name="Volcanic Zone" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+[node name="Volcanic" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Volcanic Zone"
 script = ExtResource("4_q4dly")
 
-[node name="Ice Age Tundra" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+[node name="Ice Age Tundra" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Ice Age Tundra"
 script = ExtResource("4_q4dly")
 
-[node name="Deep Jungle" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+[node name="Deep Jungle" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Deep Jungle"
 script = ExtResource("4_q4dly")
 
-[node name="Cave System" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+[node name="Cave System" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Cave System"
 script = ExtResource("4_q4dly")
 
-[node name="V_Epic" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+[node name="V_Epic" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
 visible = false
 layout_mode = 2
 theme = SubResource("Theme_4m5qs")
 
-[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+visible = false
 text = "Epic"
 button_ext_1 = NodePath("../../V_Common")
 button_ext_2 = NodePath("../../V_Uncommon")
@@ -351,50 +381,60 @@ button_ext_3 = NodePath("../../V_Rare")
 button_ext_4 = NodePath("../../V_Legendary")
 button_ext_5 = NodePath("../../V_Mythic")
 
-[node name="Epic place" type="VBoxContainer" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu" index="0"]
+[node name="Menu" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic" index="1"]
+visible = false
+
+[node name="Epic place" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu" index="0"]
+visible = false
 layout_mode = 2
 
-[node name="Savannah Highlands" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+[node name="Savannah Highlands" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Savannah Highlands"
 script = ExtResource("4_q4dly")
 
-[node name="Antarctic Peninsula" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+[node name="Antarctic Peninsula" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Antarctic Peninsula"
 script = ExtResource("4_q4dly")
 
-[node name="Polar Desert" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+[node name="Polar Desert" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Polar Desert"
 script = ExtResource("4_q4dly")
 
-[node name="Floating Islands" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+[node name="Floating Islands" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Floating Islands"
 script = ExtResource("4_q4dly")
 
-[node name="Mystic Swamps" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+[node name="Mystic Swamps" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Mystic Swamps"
 script = ExtResource("4_q4dly")
 
-[node name="V_Legendary" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+[node name="V_Legendary" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
 visible = false
 layout_mode = 2
 theme = ExtResource("4_uhig4")
 
-[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+visible = false
 text = "Legendary"
 button_ext_1 = NodePath("../../V_Common")
 button_ext_2 = NodePath("../../V_Uncommon")
@@ -402,50 +442,60 @@ button_ext_3 = NodePath("../../V_Rare")
 button_ext_4 = NodePath("../../V_Epic")
 button_ext_5 = NodePath("../../V_Mythic")
 
-[node name="Legendary place" type="VBoxContainer" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu" index="0"]
+[node name="Menu" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary" index="1"]
+visible = false
+
+[node name="Legendary place" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu" index="0"]
+visible = false
 layout_mode = 2
 
-[node name="Ancient Forest" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+[node name="Ancient Forest" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Ancient Forest"
 script = ExtResource("4_q4dly")
 
-[node name="Volcanic Wasteland" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+[node name="Volcanic Wasteland" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Volcanic Wasteland"
 script = ExtResource("4_q4dly")
 
-[node name="Celestial Meadows" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+[node name="Celestial Meadows" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Celestial Meadows"
 script = ExtResource("4_q4dly")
 
-[node name="Floating Archipelago" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+[node name="Floating Archipelago" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Floating Archipelago"
 script = ExtResource("4_q4dly")
 
-[node name="Eternal Winter" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+[node name="Eternal Winter" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Eternal Winter"
 script = ExtResource("4_q4dly")
 
-[node name="V_Mythic" parent="MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+[node name="V_Mythic" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
 visible = false
 layout_mode = 2
 theme = SubResource("Theme_3cglu")
 
-[node name="Menu_button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+visible = false
 text = "Mythic"
 button_ext_1 = NodePath("../../V_Common")
 button_ext_2 = NodePath("../../V_Uncommon")
@@ -453,92 +503,141 @@ button_ext_3 = NodePath("../../V_Rare")
 button_ext_4 = NodePath("../../V_Epic")
 button_ext_5 = NodePath("../../V_Legendary")
 
-[node name="Abyss place" type="VBoxContainer" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu" index="0"]
+[node name="Menu" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic" index="1"]
+visible = false
+
+[node name="Abyss place" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu" index="0"]
+visible = false
 layout_mode = 2
 
-[node name="Mariana Trench" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+[node name="Mariana Trench" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Mariana Trench"
 script = ExtResource("4_q4dly")
 
-[node name="Abyssal Plain" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+[node name="Abyssal Plain" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Abyssal Plain"
 script = ExtResource("4_q4dly")
 
-[node name="Mid-Ocean Ridge" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+[node name="Mid-Ocean Ridge" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Mid-Ocean Ridge"
 script = ExtResource("4_q4dly")
 
-[node name="Deep Sea Hydrothermal Vents" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+[node name="Deep Sea Hydrothermal Vents" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Deep Sea Hydrothermal Vents"
 script = ExtResource("4_q4dly")
 
-[node name="Bermuda Triangle" type="Button" parent="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+[node name="Bermuda Triangle" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Bermuda Triangle"
 script = ExtResource("4_q4dly")
 
-[node name="Option" type="Button" parent="MarginContainer/HBoxContainer/V_Places"]
+[node name="Option" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Option"
 
-[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/V_Places"]
+[node name="Quit" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Quit"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Button" to="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Button" method="_on_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Outback" to="." method="_on_outback_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Savanna" to="." method="_on_savanna_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Northern Forest" to="." method="_on_northern_forest_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Common/Menu/City garden" to="." method="_on_city_garden_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Jungle" to="." method="_on_jungle_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Mountain Meadow" to="." method="_on_mountain_meadow_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Swamp" to="." method="_on_swamp_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Desert Oasis" to="." method="_on_desert_oasis_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Woodland Glade" to="." method="_on_woodland_glade_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Jurassic Jungle" to="." method="_on_jurassic_jungle_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Volcanic Zone" to="." method="_on_volcanic_zone_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Ice Age Tundra" to="." method="_on_ice_age_tundra_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Deep Jungle" to="." method="_on_deep_jungle_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Cave System" to="." method="_on_cave_system_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Savannah Highlands" to="." method="_on_savannah_highlands_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Antarctic Peninsula" to="." method="_on_antarctic_peninsula_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Polar Desert" to="." method="_on_polar_desert_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Floating Islands" to="." method="_on_floating_islands_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Mystic Swamps" to="." method="_on_mystic_swamps_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Ancient Forest" to="." method="_on_ancient_forest_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Volcanic Wasteland" to="." method="_on_volcanic_wasteland_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Celestial Meadows" to="." method="_on_celestial_meadows_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Floating Archipelago" to="." method="_on_floating_archipelago_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Eternal Winter" to="." method="_on_eternal_winter_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Mariana Trench" to="." method="_on_mariana_trench_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Abyssal Plain" to="." method="_on_abyssal_plain_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Mid-Ocean Ridge" to="." method="_on_mid_ocean_ridge_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Deep Sea Hydrothermal Vents" to="." method="_on_deep_sea_hydrothermal_vents_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Bermuda Triangle" to="." method="_on_bermuda_triangle_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/V_Places/Quit" to="." method="_on_quit_pressed"]
+[node name="Common" type="Node2D" parent="Cameras"]
 
-[editable path="MarginContainer/HBoxContainer/V_Places/V_Common"]
-[editable path="MarginContainer/HBoxContainer/V_Places/V_Uncommon"]
-[editable path="MarginContainer/HBoxContainer/V_Places/V_Rare"]
-[editable path="MarginContainer/HBoxContainer/V_Places/V_Epic"]
-[editable path="MarginContainer/HBoxContainer/V_Places/V_Legendary"]
-[editable path="MarginContainer/HBoxContainer/V_Places/V_Mythic"]
+[node name="Farm" type="Node2D" parent="Cameras/Common"]
+
+[node name="Bee" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(224, 320)
+
+[node name="Ant" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(448, 320)
+
+[node name="Ladybug" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(672, 320)
+
+[node name="Fly" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(896, 320)
+
+[node name="Caterpillar" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(1120, 320)
+
+[node name="Grasshopper" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(1344, 320)
+
+[node name="Dandelion" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(1568, 320)
+
+[node name="Clover" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(1792, 320)
+
+[node name="Daisy" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(2016, 320)
+
+[node name="Wild_grass" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(2240, 320)
+
+[node name="Poppy" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(2464, 320)
+
+[node name="Lavender" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
+position = Vector2(2688, 320)
+
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Farm" to="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Farm" method="_on_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Outback" to="." method="_on_outback_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Savanna" to="." method="_on_savanna_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Northern Forest" to="." method="_on_northern_forest_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/City garden" to="." method="_on_city_garden_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Jungle" to="." method="_on_jungle_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Mountain Meadow" to="." method="_on_mountain_meadow_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Swamp" to="." method="_on_swamp_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Desert Oasis" to="." method="_on_desert_oasis_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Woodland Glade" to="." method="_on_woodland_glade_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Jurassic" to="." method="_on_jurassic_jungle_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Volcanic" to="." method="_on_volcanic_zone_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Ice Age Tundra" to="." method="_on_ice_age_tundra_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Deep Jungle" to="." method="_on_deep_jungle_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Cave System" to="." method="_on_cave_system_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Savannah Highlands" to="." method="_on_savannah_highlands_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Antarctic Peninsula" to="." method="_on_antarctic_peninsula_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Polar Desert" to="." method="_on_polar_desert_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Floating Islands" to="." method="_on_floating_islands_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Mystic Swamps" to="." method="_on_mystic_swamps_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Ancient Forest" to="." method="_on_ancient_forest_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Volcanic Wasteland" to="." method="_on_volcanic_wasteland_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Celestial Meadows" to="." method="_on_celestial_meadows_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Floating Archipelago" to="." method="_on_floating_archipelago_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Eternal Winter" to="." method="_on_eternal_winter_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Mariana Trench" to="." method="_on_mariana_trench_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Abyssal Plain" to="." method="_on_abyssal_plain_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Mid-Ocean Ridge" to="." method="_on_mid_ocean_ridge_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Deep Sea Hydrothermal Vents" to="." method="_on_deep_sea_hydrothermal_vents_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Bermuda Triangle" to="." method="_on_bermuda_triangle_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Quit" to="." method="_on_quit_pressed"]
+
+[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common"]
+[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon"]
+[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare"]
+[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic"]
+[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary"]
+[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic"]

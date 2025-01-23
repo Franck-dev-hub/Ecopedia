@@ -1,30 +1,32 @@
 extends TileMap
 
-@onready var score_label: Label = $GUI/Score
+@onready var debug: Label = $"../GUI/Stamina/Debug"
+
 @onready var farm: Node2D = $".."
-@onready var timer: Timer = $GUI/Stamina/Timer
+@onready var timer: Timer = $"../GUI/Stamina/Timer"
 @onready var creatures: Node2D = $Creatures
-@onready var hint_map: TileMapLayer = $GUI/HintPanel/Panel/HintMap
+@onready var hint_map: TileMapLayer = $"../GUI/HintPanel/Panel/HintMap"
 
 var tiles_id_script
 var tiles_id
+var total_tiles: int = 0
+
+var current_creature: String = ""
 
 # Map coordinates
 var start_x: int = 1
 var start_y: int = 3
-var max_x: int = 7
-var max_y: int = 9
-
-var total_tiles: int = 0
+var max_x: int = 6
+var max_y: int = 8
 
 # Rarity probability
 @export var rarity_weight = {
-	"Common": 59.5, # Pattern 6
-	"Uncommon": 25, # Pattern 5
-	"Rare": 10, # Pattern 4
-	"Epic": 4, # Pattern 3
-	"Legendary": 1, # Pattern 2
-	"Mythic": 0.5 # Pattern 1
+	"Common": 59.5,
+	"Uncommon": 25,
+	"Rare": 10,
+	"Epic": 4,
+	"Legendary": 1,
+	"Mythic": 0.5
 }
 
 # Dictionary to load creature for rarity
@@ -60,7 +62,6 @@ func _ready():
 	randomize()
 	spawn_tilset()
 	spawn_random_creature()
-	score_label.text = "Score: " + str(Global.score)
 
 func spawn_tilset():
 	# Background
@@ -99,6 +100,7 @@ func spawn_random_creature():
 
 	# Get random creature by his rarity
 	var random_creature = creatures_list[randi_range(0, creatures_list.size() - 1)]
+	current_creature = random_creature.creature_name
 	var pattern = random_creature.pattern
 
 	# Calculate size of pattern
@@ -112,7 +114,8 @@ func spawn_random_creature():
 	var y = randi_range(start_y, max_y - pattern_height)
 	var start_pos = Vector2i(x, y)
 
-	print("Name : ", random_creature.creature_name)
+	debug.text = current_creature
+	print("Name : ", current_creature)
 	print("Rarity :", selected_rarity)
 
 	# Display pattern
@@ -154,14 +157,19 @@ func choose_rarity() -> String:
 	return "Common"
 
 # If creature found
-func discovered():
+func discover(win: bool):
+	if win:
+		var current_value = Global.farm_creature_count.get(current_creature)
+		current_value += 1
+		Global.update_json_file(current_creature,current_value)
+		print(current_creature, ": ", current_value)
+		Global.farm_creature_count[current_creature] = current_value
+
 	timer.start()
-	Global.score += 1
-	score_label.text = "Score: " + str(Global.score)
 	for i in range(max_x + 1):
 		for j in range(max_y + 1):
 			erase_cell(2, Vector2i(i, j))
 
 func _on_timer_timeout() -> void:
-	print("end")
+	print("Timer end")
 	farm.game_end()

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cas13ydbqxhhn"]
+
+[ext_resource type="Script" path="res://scripts/levels/creature.gd" id="1_cw4kd"]
+[ext_resource type="FontFile" uid="uid://b24t7afsssog7" path="res://assets/fonts/PixelOperator8.ttf" id="2_jbeaw"]
+
+[sub_resource type="Theme" id="Theme_7hlyk"]
+default_font = ExtResource("2_jbeaw")
+default_font_size = 8
+
+[node name="Camera" type="Camera2D"]
+anchor_mode = 0
+enabled = false
+script = ExtResource("1_cw4kd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 229.0
+offset_bottom = 325.0
+theme = SubResource("Theme_7hlyk")
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(224, 320)
+layout_mode = 2
+text = "Creature: 0"

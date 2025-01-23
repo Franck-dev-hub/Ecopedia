@@ -10,11 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Tiny World"
+config/name="Buzzy Meadows"
 run/main_scene="res://scene/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-run/max_fps=120
-config/icon="res://assets/faune.png"
+run/max_fps=60
 
 [autoload]
 
@@ -22,11 +21,11 @@ Global="*res://scripts/global.gd"
 
 [display]
 
-window/size/viewport_width=256
-window/size/viewport_height=352
+window/size/viewport_width=224
+window/size/viewport_height=320
 window/size/resizable=false
-window/size/window_width_override=768
-window/size/window_height_override=1056
+window/size/window_width_override=672
+window/size/window_height_override=960
 window/stretch/mode="viewport"
 window/handheld/orientation=1
 
