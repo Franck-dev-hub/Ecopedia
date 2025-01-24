@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://be1eqlu04163l"]
+[gd_scene load_steps=39 format=3 uid="uid://be1eqlu04163l"]
 
 [ext_resource type="Script" path="res://scripts/levels/hud.gd" id="1_fqvch"]
 [ext_resource type="Script" path="res://scripts/swipe.gd" id="2_7rq3u"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://b24t7afsssog7" path="res://assets/fonts/PixelOperator8.ttf" id="2_xl846"]
 [ext_resource type="Script" path="res://scripts/change_scene.gd" id="4_q4dly"]
 [ext_resource type="Theme" uid="uid://cttdu3v2kda3d" path="res://scene/button_theme.tres" id="4_uhig4"]
+[ext_resource type="Script" path="res://scripts/reset_alert.gd" id="7_l3gmd"]
 [ext_resource type="PackedScene" uid="uid://cas13ydbqxhhn" path="res://scene/levels/creature.tscn" id="7_ymgka"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dd36m"]
@@ -14,37 +15,6 @@
 default_font = ExtResource("2_xl846")
 default_font_size = 8
 Button/styles/focus = SubResource("StyleBoxEmpty_dd36m")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uypa2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7okx"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.827451, 0.827451, 0.827451, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enkpa"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.690196, 0.690196, 0.690196, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="Theme" id="Theme_uvyqo"]
-default_font = ExtResource("2_xl846")
-default_font_size = 8
-Button/styles/focus = SubResource("StyleBoxEmpty_uypa2")
-Button/styles/hover = SubResource("StyleBoxFlat_q7okx")
-Button/styles/normal = SubResource("StyleBoxFlat_enkpa")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x0444"]
 
@@ -76,6 +46,37 @@ default_font_size = 8
 Button/styles/focus = SubResource("StyleBoxEmpty_x0444")
 Button/styles/hover = SubResource("StyleBoxFlat_rs0vt")
 Button/styles/normal = SubResource("StyleBoxFlat_jj85i")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uypa2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7okx"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.827451, 0.827451, 0.827451, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enkpa"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.690196, 0.690196, 0.690196, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_uvyqo"]
+default_font = ExtResource("2_xl846")
+default_font_size = 8
+Button/styles/focus = SubResource("StyleBoxEmpty_uypa2")
+Button/styles/hover = SubResource("StyleBoxFlat_q7okx")
+Button/styles/normal = SubResource("StyleBoxFlat_enkpa")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61r0e"]
 
@@ -170,6 +171,82 @@ Button/styles/focus = SubResource("StyleBoxEmpty_gkwva")
 Button/styles/hover = SubResource("StyleBoxFlat_rq2o4")
 Button/styles/normal = SubResource("StyleBoxFlat_e6yaj")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjprw"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myb41"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.596078, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kc0n3"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.247059, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_qc7bm"]
+Button/styles/hover = SubResource("StyleBoxFlat_kjprw")
+Button/styles/normal = SubResource("StyleBoxFlat_myb41")
+Button/styles/pressed = SubResource("StyleBoxFlat_kc0n3")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehakr"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iapwh"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.662745, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05iml"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.243137, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_tij7j"]
+Button/styles/hover = SubResource("StyleBoxFlat_ehakr")
+Button/styles/normal = SubResource("StyleBoxFlat_iapwh")
+Button/styles/pressed = SubResource("StyleBoxFlat_05iml")
+
 [node name="HUD" type="Node2D"]
 script = ExtResource("1_fqvch")
 
@@ -192,58 +269,6 @@ theme = SubResource("Theme_61hyp")
 
 [node name="V_Places" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer"]
 layout_mode = 2
-
-[node name="V_Common" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
-layout_mode = 2
-theme = SubResource("Theme_uvyqo")
-
-[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
-text = "Common"
-button_ext_1 = NodePath("../../V_Uncommon")
-button_ext_2 = NodePath("../../V_Rare")
-button_ext_3 = NodePath("../../V_Epic")
-button_ext_4 = NodePath("../../V_Legendary")
-button_ext_5 = NodePath("../../V_Mythic")
-
-[node name="Farm" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="0"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Farm"
-script = ExtResource("4_q4dly")
-scene_path = "res://scene/levels/farm.tscn"
-
-[node name="Outback" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="1"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Outback"
-script = ExtResource("4_q4dly")
-
-[node name="Savanna" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="2"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Savanna"
-script = ExtResource("4_q4dly")
-
-[node name="Northern Forest" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="3"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Northern Forest"
-script = ExtResource("4_q4dly")
-
-[node name="City garden" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="4"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "City garden"
-script = ExtResource("4_q4dly")
 
 [node name="V_Uncommon" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
 visible = false
@@ -304,6 +329,58 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Woodland Glade"
+script = ExtResource("4_q4dly")
+
+[node name="V_Common" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
+layout_mode = 2
+theme = SubResource("Theme_uvyqo")
+
+[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
+text = "Common"
+button_ext_1 = NodePath("../../V_Uncommon")
+button_ext_2 = NodePath("../../V_Rare")
+button_ext_3 = NodePath("../../V_Epic")
+button_ext_4 = NodePath("../../V_Legendary")
+button_ext_5 = NodePath("../../V_Mythic")
+
+[node name="Farm" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="0"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Farm"
+script = ExtResource("4_q4dly")
+scene_path = "res://scene/levels/farm.tscn"
+
+[node name="Outback" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="1"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Outback"
+script = ExtResource("4_q4dly")
+
+[node name="Savanna" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="2"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Savanna"
+script = ExtResource("4_q4dly")
+
+[node name="Northern Forest" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="3"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "Northern Forest"
+script = ExtResource("4_q4dly")
+
+[node name="City garden" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="4"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xl846")
+theme_override_font_sizes/font_size = 8
+text = "City garden"
 script = ExtResource("4_q4dly")
 
 [node name="V_Rare" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
@@ -551,11 +628,52 @@ text = "Bermuda Triangle"
 script = ExtResource("4_q4dly")
 
 [node name="Option" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places"]
-visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_xl846")
 theme_override_font_sizes/font_size = 8
 text = "Option"
+
+[node name="Option" type="Camera2D" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option"]
+position = Vector2(219, -37)
+anchor_mode = 0
+enabled = false
+
+[node name="Reset save" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option"]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 41.0
+offset_right = 379.0
+offset_bottom = 75.0
+text = "Reset save"
+
+[node name="Reset Alert" type="Popup" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option"]
+position = Vector2i(30, 75)
+size = Vector2i(191, 200)
+visible = true
+script = ExtResource("7_l3gmd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert"]
+custom_minimum_size = Vector2(150, 37.06)
+offset_right = 95.0
+offset_bottom = 50.0
+
+[node name="Label" type="Label" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer"]
+layout_mode = 2
+text = "Be carefull, your save is about to be reset !!!"
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer"]
+layout_mode = 2
+
+[node name="Agree" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_qc7bm")
+text = "Agree"
+
+[node name="Cancel" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_tij7j")
+text = "Cancel"
 
 [node name="Quit" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places"]
 layout_mode = 2
@@ -603,16 +721,16 @@ position = Vector2(2464, 320)
 [node name="Lavender" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
 position = Vector2(2688, 320)
 
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Farm" to="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Farm" method="_on_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Outback" to="." method="_on_outback_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Savanna" to="." method="_on_savanna_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Northern Forest" to="." method="_on_northern_forest_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/City garden" to="." method="_on_city_garden_pressed"]
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Jungle" to="." method="_on_jungle_pressed"]
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Mountain Meadow" to="." method="_on_mountain_meadow_pressed"]
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Swamp" to="." method="_on_swamp_pressed"]
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Desert Oasis" to="." method="_on_desert_oasis_pressed"]
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Woodland Glade" to="." method="_on_woodland_glade_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Farm" to="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Farm" method="_on_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Outback" to="." method="_on_outback_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Savanna" to="." method="_on_savanna_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Northern Forest" to="." method="_on_northern_forest_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/City garden" to="." method="_on_city_garden_pressed"]
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Jurassic" to="." method="_on_jurassic_jungle_pressed"]
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Volcanic" to="." method="_on_volcanic_zone_pressed"]
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Ice Age Tundra" to="." method="_on_ice_age_tundra_pressed"]
@@ -633,10 +751,14 @@ position = Vector2(2688, 320)
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Mid-Ocean Ridge" to="." method="_on_mid_ocean_ridge_pressed"]
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Deep Sea Hydrothermal Vents" to="." method="_on_deep_sea_hydrothermal_vents_pressed"]
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Bermuda Triangle" to="." method="_on_bermuda_triangle_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset save" to="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert" method="_on_reset_save_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer/HBoxContainer/Agree" to="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert" method="_on_agree_pressed"]
+[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer/HBoxContainer/Cancel" to="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert" method="_on_cancel_pressed"]
 [connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Quit" to="." method="_on_quit_pressed"]
 
-[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common"]
 [editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon"]
+[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common"]
 [editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare"]
 [editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic"]
 [editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary"]
