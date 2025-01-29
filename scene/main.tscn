@@ -1,765 +1,540 @@
-[gd_scene load_steps=39 format=3 uid="uid://be1eqlu04163l"]
+[gd_scene load_steps=26 format=3 uid="uid://bcdk43qj3bg31"]
 
-[ext_resource type="Script" path="res://scripts/levels/hud.gd" id="1_fqvch"]
-[ext_resource type="Script" path="res://scripts/swipe.gd" id="2_7rq3u"]
-[ext_resource type="PackedScene" uid="uid://ylukf2ldxdxg" path="res://scene/menu/v_menu.tscn" id="2_reck3"]
-[ext_resource type="FontFile" uid="uid://b24t7afsssog7" path="res://assets/fonts/PixelOperator8.ttf" id="2_xl846"]
-[ext_resource type="Script" path="res://scripts/change_scene.gd" id="4_q4dly"]
-[ext_resource type="Theme" uid="uid://cttdu3v2kda3d" path="res://scene/button_theme.tres" id="4_uhig4"]
-[ext_resource type="Script" path="res://scripts/reset_alert.gd" id="7_l3gmd"]
-[ext_resource type="PackedScene" uid="uid://cas13ydbqxhhn" path="res://scene/levels/creature.tscn" id="7_ymgka"]
+[ext_resource type="FontFile" uid="uid://bga5ibesh7gv1" path="res://assets/fonts/PixelOperator8.ttf" id="1_dcu8g"]
+[ext_resource type="Script" path="res://script/control/control_main_page.gd" id="2_p63oh"]
+[ext_resource type="PackedScene" uid="uid://b1bg60mvhfipn" path="res://scene/templates/terrarium_creature.tscn" id="2_u84gi"]
+[ext_resource type="Script" path="res://script/control/control_options_page.gd" id="3_ey0g0"]
+[ext_resource type="TileSet" uid="uid://c8ulupuday03y" path="res://misc/tres/tile_layer_map.tres" id="4_agfm4"]
+[ext_resource type="Script" path="res://script/control/control_reset_page.gd" id="4_hyqrm"]
+[ext_resource type="PackedScene" uid="uid://c0q6e7vdgcqhm" path="res://scene/templates/creature.tscn" id="5_asln8"]
+[ext_resource type="Script" path="res://script/control/control_reset_done_page.gd" id="5_xu3of"]
+[ext_resource type="Script" path="res://script/gameplay/gameplay_main.gd" id="7_1selt"]
+[ext_resource type="Script" path="res://script/global/sauvegarde.gd" id="8_314rx"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dd36m"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w3p7b"]
 
-[sub_resource type="Theme" id="Theme_61hyp"]
-default_font = ExtResource("2_xl846")
-default_font_size = 8
-Button/styles/focus = SubResource("StyleBoxEmpty_dd36m")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x0444"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rs0vt"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.658824, 0.901961, 0.811765, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jj85i"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.298039, 0.686275, 0.313726, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="Theme" id="Theme_8nqxr"]
-default_font = ExtResource("2_xl846")
-default_font_size = 8
-Button/styles/focus = SubResource("StyleBoxEmpty_x0444")
-Button/styles/hover = SubResource("StyleBoxFlat_rs0vt")
-Button/styles/normal = SubResource("StyleBoxFlat_jj85i")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uypa2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7okx"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2gjm"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0.827451, 0.827451, 0.827451, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enkpa"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0j13t"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0.690196, 0.690196, 0.690196, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_uvyqo"]
-default_font = ExtResource("2_xl846")
-default_font_size = 8
-Button/styles/focus = SubResource("StyleBoxEmpty_uypa2")
-Button/styles/hover = SubResource("StyleBoxFlat_q7okx")
-Button/styles/normal = SubResource("StyleBoxFlat_enkpa")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8mcy"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.627451, 0.627451, 0.627451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61r0e"]
+[sub_resource type="Theme" id="Theme_c7tc1"]
+default_font = ExtResource("1_dcu8g")
+default_font_size = 24
+Button/styles/focus = SubResource("StyleBoxEmpty_w3p7b")
+Button/styles/hover = SubResource("StyleBoxFlat_i2gjm")
+Button/styles/normal = SubResource("StyleBoxFlat_0j13t")
+Button/styles/pressed = SubResource("StyleBoxFlat_y8mcy")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_33t0t"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.627451, 0.768627, 1, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6do61"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.129412, 0.588235, 0.952941, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="Theme" id="Theme_8c84i"]
-default_font = ExtResource("2_xl846")
-default_font_size = 8
-Button/styles/focus = SubResource("StyleBoxEmpty_61r0e")
-Button/styles/hover = SubResource("StyleBoxFlat_33t0t")
-Button/styles/normal = SubResource("StyleBoxFlat_6do61")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hlws"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hm4jp"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.815686, 0.662745, 0.960784, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_va7m7"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.611765, 0.152941, 0.690196, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="Theme" id="Theme_4m5qs"]
-default_font = ExtResource("2_xl846")
-default_font_size = 8
-Button/styles/focus = SubResource("StyleBoxEmpty_2hlws")
-Button/styles/hover = SubResource("StyleBoxFlat_hm4jp")
-Button/styles/normal = SubResource("StyleBoxFlat_va7m7")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkwva"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rq2o4"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(1, 0.541176, 0.501961, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6yaj"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(1, 0.321569, 0.321569, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="Theme" id="Theme_3cglu"]
-default_font = ExtResource("2_xl846")
-default_font_size = 8
-Button/styles/focus = SubResource("StyleBoxEmpty_gkwva")
-Button/styles/hover = SubResource("StyleBoxFlat_rq2o4")
-Button/styles/normal = SubResource("StyleBoxFlat_e6yaj")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjprw"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipivb"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(1, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myb41"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqmt8"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0.596078, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kc0n3"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm6sf"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0.247059, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_qc7bm"]
-Button/styles/hover = SubResource("StyleBoxFlat_kjprw")
-Button/styles/normal = SubResource("StyleBoxFlat_myb41")
-Button/styles/pressed = SubResource("StyleBoxFlat_kc0n3")
+[sub_resource type="Theme" id="Theme_7ejk6"]
+Button/styles/hover = SubResource("StyleBoxFlat_ipivb")
+Button/styles/normal = SubResource("StyleBoxFlat_kqmt8")
+Button/styles/pressed = SubResource("StyleBoxFlat_tm6sf")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehakr"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqb4s"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0, 1, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iapwh"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq6sk"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0, 0.662745, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05iml"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kee4"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0, 0.243137, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
-[sub_resource type="Theme" id="Theme_tij7j"]
-Button/styles/hover = SubResource("StyleBoxFlat_ehakr")
-Button/styles/normal = SubResource("StyleBoxFlat_iapwh")
-Button/styles/pressed = SubResource("StyleBoxFlat_05iml")
+[sub_resource type="Theme" id="Theme_7vlbk"]
+Button/styles/hover = SubResource("StyleBoxFlat_oqb4s")
+Button/styles/normal = SubResource("StyleBoxFlat_vq6sk")
+Button/styles/pressed = SubResource("StyleBoxFlat_1kee4")
 
-[node name="HUD" type="Node2D"]
-script = ExtResource("1_fqvch")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_csvgy"]
 
-[node name="Cameras" type="Node2D" parent="."]
-script = ExtResource("2_7rq3u")
-camera_paths = Array[NodePath]([NodePath("HUB"), NodePath("Common/Farm/Bee"), NodePath("Common/Farm/Ant"), NodePath("Common/Farm/Ladybug"), NodePath("Common/Farm/Fly"), NodePath("Common/Farm/Caterpillar"), NodePath("Common/Farm/Grasshopper"), NodePath("Common/Farm/Dandelion"), NodePath("Common/Farm/Clover"), NodePath("Common/Farm/Daisy"), NodePath("Common/Farm/Wild_grass"), NodePath("Common/Farm/Poppy"), NodePath("Common/Farm/Lavender")])
+[sub_resource type="Theme" id="Theme_mf8as"]
+default_font = ExtResource("1_dcu8g")
+default_font_size = 20
+Button/styles/focus = SubResource("StyleBoxEmpty_csvgy")
 
-[node name="HUB" type="Camera2D" parent="Cameras"]
+[node name="Main" type="Node2D"]
+
+[node name="Général" type="Node2D" parent="."]
+
+[node name="Main page" type="Node2D" parent="Général"]
+
+[node name="Main" type="Camera2D" parent="Général/Main page" groups=["Cameras"]]
 anchor_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="Cameras/HUB"]
+[node name="Control" type="Control" parent="Général/Main page/Main"]
+layout_mode = 3
+anchors_preset = 0
 offset_left = 5.0
 offset_top = 5.0
-offset_right = 80.0
-offset_bottom = 53.0
+offset_right = 443.0
+offset_bottom = 1008.0
+theme = SubResource("Theme_c7tc1")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Cameras/HUB/MarginContainer"]
+[node name="Main page" type="Control" parent="Général/Main page/Main/Control"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 438.0
+offset_bottom = 1003.0
+script = ExtResource("2_p63oh")
+
+[node name="Places" type="VBoxContainer" parent="Général/Main page/Main/Control/Main page"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 198.5
+offset_bottom = 346.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cloportes" type="Button" parent="Général/Main page/Main/Control/Main page/Places"]
 layout_mode = 2
-theme = SubResource("Theme_61hyp")
+text = "Cloportes"
 
-[node name="V_Places" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer"]
+[node name="Fourmis" type="Button" parent="Général/Main page/Main/Control/Main page/Places"]
 layout_mode = 2
+text = "Fourmis"
 
-[node name="V_Uncommon" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
-visible = false
+[node name="Iules" type="Button" parent="Général/Main page/Main/Control/Main page/Places"]
 layout_mode = 2
-theme = SubResource("Theme_8nqxr")
+text = "Iules"
 
-[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
-visible = false
-text = "Uncommon"
-button_ext_1 = NodePath("../../V_Common")
-button_ext_2 = NodePath("../../V_Rare")
-button_ext_3 = NodePath("../../V_Epic")
-button_ext_4 = NodePath("../../V_Legendary")
-button_ext_5 = NodePath("../../V_Mythic")
-
-[node name="Menu" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon" index="1"]
-visible = false
-
-[node name="Uncommon place" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu" index="0"]
-visible = false
+[node name="Araignées" type="Button" parent="Général/Main page/Main/Control/Main page/Places"]
 layout_mode = 2
+text = "Araignées"
 
-[node name="Jungle" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
-visible = false
+[node name="Money" type="BoxContainer" parent="Général/Main page/Main/Control/Main page"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Coins" type="Label" parent="Général/Main page/Main/Control/Main page/Money"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Jungle"
-script = ExtResource("4_q4dly")
+text = "Pièces: 500"
 
-[node name="Mountain Meadow" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
-visible = false
+[node name="Move right" type="BoxContainer" parent="Général/Main page/Main/Control/Main page"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="Right" type="Button" parent="Général/Main page/Main/Control/Main page/Move right"]
+custom_minimum_size = Vector2(50, 80)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Mountain Meadow"
-script = ExtResource("4_q4dly")
+size_flags_horizontal = 8
+text = ">"
 
-[node name="Swamp" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
-visible = false
+[node name="Menu" type="VBoxContainer" parent="Général/Main page/Main/Control/Main page"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -138.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Capture" type="Button" parent="Général/Main page/Main/Control/Main page/Menu"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Swamp"
-script = ExtResource("4_q4dly")
+text = "Capture"
 
-[node name="Desert Oasis" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Desert Oasis"
-script = ExtResource("4_q4dly")
-
-[node name="Woodland Glade" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Woodland Glade"
-script = ExtResource("4_q4dly")
-
-[node name="V_Common" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
-layout_mode = 2
-theme = SubResource("Theme_uvyqo")
-
-[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
-text = "Common"
-button_ext_1 = NodePath("../../V_Uncommon")
-button_ext_2 = NodePath("../../V_Rare")
-button_ext_3 = NodePath("../../V_Epic")
-button_ext_4 = NodePath("../../V_Legendary")
-button_ext_5 = NodePath("../../V_Mythic")
-
-[node name="Farm" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="0"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Farm"
-script = ExtResource("4_q4dly")
-scene_path = "res://scene/levels/farm.tscn"
-
-[node name="Outback" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="1"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Outback"
-script = ExtResource("4_q4dly")
-
-[node name="Savanna" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="2"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Savanna"
-script = ExtResource("4_q4dly")
-
-[node name="Northern Forest" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="3"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Northern Forest"
-script = ExtResource("4_q4dly")
-
-[node name="City garden" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu" index="4"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "City garden"
-script = ExtResource("4_q4dly")
-
-[node name="V_Rare" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
-visible = false
-layout_mode = 2
-theme = SubResource("Theme_8c84i")
-
-[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
-visible = false
-text = "Rare"
-button_ext_1 = NodePath("../../V_Common")
-button_ext_2 = NodePath("../../V_Uncommon")
-button_ext_3 = NodePath("../../V_Epic")
-button_ext_4 = NodePath("../../V_Legendary")
-button_ext_5 = NodePath("../../V_Mythic")
-
-[node name="Menu" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare" index="1"]
-visible = false
-
-[node name="Rare place" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu" index="0"]
-visible = false
+[node name="Options" type="BoxContainer" parent="Général/Main page/Main/Control/Main page/Menu"]
 layout_mode = 2
 
-[node name="Jurassic" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
-visible = false
+[node name="Options" type="Button" parent="Général/Main page/Main/Control/Main page/Menu/Options"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Jurassic Jungle"
-script = ExtResource("4_q4dly")
+size_flags_horizontal = 3
+text = "Options"
 
-[node name="Volcanic" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
-visible = false
+[node name="Quitter" type="Button" parent="Général/Main page/Main/Control/Main page/Menu/Options"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Volcanic Zone"
-script = ExtResource("4_q4dly")
+size_flags_horizontal = 3
+text = "Quitter"
 
-[node name="Ice Age Tundra" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+[node name="Option page" type="Control" parent="Général/Main page/Main/Control"]
 visible = false
+anchors_preset = 0
+offset_right = 470.0
+offset_bottom = 1003.0
+script = ExtResource("3_ey0g0")
+
+[node name="Menu" type="VBoxContainer" parent="Général/Main page/Main/Control/Option page"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Reset save" type="Button" parent="Général/Main page/Main/Control/Option page/Menu"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Ice Age Tundra"
-script = ExtResource("4_q4dly")
+size_flags_vertical = 0
+text = "reset save"
 
-[node name="Deep Jungle" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
-visible = false
+[node name="Home" type="Button" parent="Général/Main page/Main/Control/Option page/Menu"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Deep Jungle"
-script = ExtResource("4_q4dly")
+size_flags_vertical = 10
+text = "Home"
 
-[node name="Cave System" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place"]
+[node name="Reset page" type="Control" parent="Général/Main page/Main/Control"]
 visible = false
+anchors_preset = 0
+offset_right = 470.0
+offset_bottom = 1003.0
+script = ExtResource("4_hyqrm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Général/Main page/Main/Control/Reset page"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Alerte" type="Label" parent="Général/Main page/Main/Control/Reset page/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Cave System"
-script = ExtResource("4_q4dly")
-
-[node name="V_Epic" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
-visible = false
-layout_mode = 2
-theme = SubResource("Theme_4m5qs")
-
-[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
-visible = false
-text = "Epic"
-button_ext_1 = NodePath("../../V_Common")
-button_ext_2 = NodePath("../../V_Uncommon")
-button_ext_3 = NodePath("../../V_Rare")
-button_ext_4 = NodePath("../../V_Legendary")
-button_ext_5 = NodePath("../../V_Mythic")
-
-[node name="Menu" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic" index="1"]
-visible = false
-
-[node name="Epic place" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu" index="0"]
-visible = false
-layout_mode = 2
-
-[node name="Savannah Highlands" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Savannah Highlands"
-script = ExtResource("4_q4dly")
-
-[node name="Antarctic Peninsula" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Antarctic Peninsula"
-script = ExtResource("4_q4dly")
-
-[node name="Polar Desert" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Polar Desert"
-script = ExtResource("4_q4dly")
-
-[node name="Floating Islands" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Floating Islands"
-script = ExtResource("4_q4dly")
-
-[node name="Mystic Swamps" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Mystic Swamps"
-script = ExtResource("4_q4dly")
-
-[node name="V_Legendary" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
-visible = false
-layout_mode = 2
-theme = ExtResource("4_uhig4")
-
-[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
-visible = false
-text = "Legendary"
-button_ext_1 = NodePath("../../V_Common")
-button_ext_2 = NodePath("../../V_Uncommon")
-button_ext_3 = NodePath("../../V_Rare")
-button_ext_4 = NodePath("../../V_Epic")
-button_ext_5 = NodePath("../../V_Mythic")
-
-[node name="Menu" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary" index="1"]
-visible = false
-
-[node name="Legendary place" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu" index="0"]
-visible = false
-layout_mode = 2
-
-[node name="Ancient Forest" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Ancient Forest"
-script = ExtResource("4_q4dly")
-
-[node name="Volcanic Wasteland" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Volcanic Wasteland"
-script = ExtResource("4_q4dly")
-
-[node name="Celestial Meadows" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Celestial Meadows"
-script = ExtResource("4_q4dly")
-
-[node name="Floating Archipelago" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Floating Archipelago"
-script = ExtResource("4_q4dly")
-
-[node name="Eternal Winter" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Eternal Winter"
-script = ExtResource("4_q4dly")
-
-[node name="V_Mythic" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places" instance=ExtResource("2_reck3")]
-visible = false
-layout_mode = 2
-theme = SubResource("Theme_3cglu")
-
-[node name="Menu_button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic" index="0" node_paths=PackedStringArray("button_ext_1", "button_ext_2", "button_ext_3", "button_ext_4", "button_ext_5")]
-visible = false
-text = "Mythic"
-button_ext_1 = NodePath("../../V_Common")
-button_ext_2 = NodePath("../../V_Uncommon")
-button_ext_3 = NodePath("../../V_Rare")
-button_ext_4 = NodePath("../../V_Epic")
-button_ext_5 = NodePath("../../V_Legendary")
-
-[node name="Menu" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic" index="1"]
-visible = false
-
-[node name="Abyss place" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu" index="0"]
-visible = false
-layout_mode = 2
-
-[node name="Mariana Trench" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Mariana Trench"
-script = ExtResource("4_q4dly")
-
-[node name="Abyssal Plain" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Abyssal Plain"
-script = ExtResource("4_q4dly")
-
-[node name="Mid-Ocean Ridge" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Mid-Ocean Ridge"
-script = ExtResource("4_q4dly")
-
-[node name="Deep Sea Hydrothermal Vents" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Deep Sea Hydrothermal Vents"
-script = ExtResource("4_q4dly")
-
-[node name="Bermuda Triangle" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Bermuda Triangle"
-script = ExtResource("4_q4dly")
-
-[node name="Option" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Option"
-
-[node name="Option" type="Camera2D" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option"]
-position = Vector2(219, -37)
-anchor_mode = 0
-enabled = false
-
-[node name="Reset save" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option"]
-layout_mode = 0
-offset_left = 278.0
-offset_top = 41.0
-offset_right = 379.0
-offset_bottom = 75.0
-text = "Reset save"
-
-[node name="Reset Alert" type="Popup" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option"]
-position = Vector2i(30, 75)
-size = Vector2i(191, 200)
-visible = true
-script = ExtResource("7_l3gmd")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert"]
-custom_minimum_size = Vector2(150, 37.06)
-offset_right = 95.0
-offset_bottom = 50.0
-
-[node name="Label" type="Label" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer"]
-layout_mode = 2
-text = "Be carefull, your save is about to be reset !!!"
+text = "Attention, votre sauvegarde est sur le point d'être réinitialisé"
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Général/Main page/Main/Control/Reset page/VBoxContainer"]
 layout_mode = 2
 
-[node name="Agree" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer/HBoxContainer"]
+[node name="Tout supprimer" type="Button" parent="Général/Main page/Main/Control/Reset page/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_qc7bm")
-text = "Agree"
+size_flags_horizontal = 3
+theme = SubResource("Theme_7ejk6")
+text = "Tout supprimer"
 
-[node name="Cancel" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer/HBoxContainer"]
+[node name="Annuler" type="Button" parent="Général/Main page/Main/Control/Reset page/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_tij7j")
-text = "Cancel"
+size_flags_horizontal = 3
+theme = SubResource("Theme_7vlbk")
+text = "Annuler
+"
 
-[node name="Quit" type="Button" parent="Cameras/HUB/MarginContainer/HBoxContainer/V_Places"]
+[node name="Reset done page" type="Control" parent="Général/Main page/Main/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_xu3of")
+
+[node name="Label" type="Label" parent="Général/Main page/Main/Control/Reset done page"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -12.0
+offset_right = 20.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Reset done ..."
+
+[node name="Timer" type="Timer" parent="Général/Main page/Main/Control/Reset done page/Label"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Terrarium" type="Node2D" parent="Général"]
+
+[node name="Cloportes" type="Node2D" parent="Général/Terrarium"]
+
+[node name="Porcellio laevis" parent="Général/Terrarium/Cloportes" groups=["Cameras"] instance=ExtResource("2_u84gi")]
+position = Vector2(448, 0)
+
+[node name="Porcellio scaber" parent="Général/Terrarium/Cloportes" groups=["Cameras"] instance=ExtResource("2_u84gi")]
+position = Vector2(896, 0)
+
+[node name="Capture" type="Camera2D" parent="Général" groups=["Cameras"]]
+position = Vector2(0, -1013)
+anchor_mode = 0
+
+[node name="Control" type="Control" parent="Général/Capture"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 443.0
+offset_bottom = 1008.0
+theme = SubResource("Theme_mf8as")
+
+[node name="Main page" type="Control" parent="Général/Capture/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_1selt")
+
+[node name="Hint button" type="TextureButton" parent="Général/Capture/Control/Main page"]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 187.0
+offset_right = 251.0
+offset_bottom = 251.0
+
+[node name="Creature" type="Label" parent="Général/Capture/Control/Main page/Hint button"]
+visible = false
+layout_mode = 0
+offset_left = -128.0
+offset_top = 61.0
+offset_right = 192.0
+offset_bottom = 128.0
+text = "Creature"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stamina" type="Label" parent="Général/Capture/Control/Main page"]
+layout_mode = 1
+offset_right = 327.0
+offset_bottom = 24.0
+text = "Coups restant: 10"
+
+[node name="Timer" type="Timer" parent="Général/Capture/Control/Main page/Stamina"]
+wait_time = 1.5
+one_shot = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Général/Capture/Control/Main page"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Options" type="Button" parent="Général/Capture/Control/Main page/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_xl846")
-theme_override_font_sizes/font_size = 8
-text = "Quit"
+size_flags_horizontal = 3
+text = "Options
+"
 
-[node name="Common" type="Node2D" parent="Cameras"]
+[node name="Quit" type="Button" parent="Général/Capture/Control/Main page/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quitter"
 
-[node name="Farm" type="Node2D" parent="Cameras/Common"]
+[node name="Game end page" type="Control" parent="Général/Capture/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Bee" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(224, 320)
+[node name="Menu" type="HBoxContainer" parent="Général/Capture/Control/Game end page"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Ant" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(448, 320)
+[node name="Rejouer" type="Button" parent="Général/Capture/Control/Game end page/Menu"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rejouer"
 
-[node name="Ladybug" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(672, 320)
+[node name="Fin" type="Button" parent="Général/Capture/Control/Game end page/Menu"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Menu principal"
 
-[node name="Fly" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(896, 320)
+[node name="Tilemaps" type="Node2D" parent="Général/Capture"]
 
-[node name="Caterpillar" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(1120, 320)
+[node name="Background layer" type="TileMapLayer" parent="Général/Capture/Tilemaps"]
+tile_map_data = PackedByteArray(0, 0, 1, 0, 5, 0, 0, 0, 3, 0, 0, 0, 0, 0, 5, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 1, 0, 9, 0, 0, 0, 3, 0, 2, 0, 0, 0, 5, 0, 9, 0, 0, 0, 5, 0, 2, 0, 0, 0)
+tile_set = ExtResource("4_agfm4")
 
-[node name="Grasshopper" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(1344, 320)
+[node name="Creature layer" type="TileMapLayer" parent="Général/Capture/Tilemaps"]
+tile_set = ExtResource("4_agfm4")
 
-[node name="Dandelion" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(1568, 320)
+[node name="Foreground layer" type="TileMapLayer" parent="Général/Capture/Tilemaps"]
+tile_set = ExtResource("4_agfm4")
 
-[node name="Clover" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(1792, 320)
+[node name="Hint button layer" type="TileMapLayer" parent="Général/Capture/Tilemaps"]
+tile_map_data = PackedByteArray(0, 0, 3, 0, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0)
+tile_set = ExtResource("4_agfm4")
 
-[node name="Daisy" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(2016, 320)
+[node name="Hint background layer" type="TileMapLayer" parent="Général/Capture/Tilemaps"]
+visible = false
+tile_set = ExtResource("4_agfm4")
 
-[node name="Wild_grass" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(2240, 320)
+[node name="Hint creature layer" type="TileMapLayer" parent="Général/Capture/Tilemaps"]
+visible = false
+tile_set = ExtResource("4_agfm4")
 
-[node name="Poppy" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(2464, 320)
+[node name="Global" type="Node2D" parent="Général"]
+visible = false
 
-[node name="Lavender" parent="Cameras/Common/Farm" instance=ExtResource("7_ymgka")]
-position = Vector2(2688, 320)
+[node name="Creatures" type="Node2D" parent="Général/Global"]
 
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Jungle" to="." method="_on_jungle_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Mountain Meadow" to="." method="_on_mountain_meadow_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Swamp" to="." method="_on_swamp_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Desert Oasis" to="." method="_on_desert_oasis_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon/Menu/Uncommon place/Woodland Glade" to="." method="_on_woodland_glade_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Farm" to="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Farm" method="_on_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Outback" to="." method="_on_outback_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Savanna" to="." method="_on_savanna_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/Northern Forest" to="." method="_on_northern_forest_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common/Menu/City garden" to="." method="_on_city_garden_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Jurassic" to="." method="_on_jurassic_jungle_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Volcanic" to="." method="_on_volcanic_zone_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Ice Age Tundra" to="." method="_on_ice_age_tundra_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Deep Jungle" to="." method="_on_deep_jungle_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare/Menu/Rare place/Cave System" to="." method="_on_cave_system_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Savannah Highlands" to="." method="_on_savannah_highlands_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Antarctic Peninsula" to="." method="_on_antarctic_peninsula_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Polar Desert" to="." method="_on_polar_desert_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Floating Islands" to="." method="_on_floating_islands_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic/Menu/Epic place/Mystic Swamps" to="." method="_on_mystic_swamps_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Ancient Forest" to="." method="_on_ancient_forest_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Volcanic Wasteland" to="." method="_on_volcanic_wasteland_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Celestial Meadows" to="." method="_on_celestial_meadows_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Floating Archipelago" to="." method="_on_floating_archipelago_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary/Menu/Legendary place/Eternal Winter" to="." method="_on_eternal_winter_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Mariana Trench" to="." method="_on_mariana_trench_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Abyssal Plain" to="." method="_on_abyssal_plain_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Mid-Ocean Ridge" to="." method="_on_mid_ocean_ridge_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Deep Sea Hydrothermal Vents" to="." method="_on_deep_sea_hydrothermal_vents_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic/Menu/Abyss place/Bermuda Triangle" to="." method="_on_bermuda_triangle_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option" to="." method="_on_option_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset save" to="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert" method="_on_reset_save_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer/HBoxContainer/Agree" to="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert" method="_on_agree_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert/VBoxContainer/HBoxContainer/Cancel" to="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Option/Reset Alert" method="_on_cancel_pressed"]
-[connection signal="pressed" from="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/Quit" to="." method="_on_quit_pressed"]
+[node name="Porcellio scaber" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+sprite_position = Vector2i(0, 3)
+pattern = [[1, 1, 1, 1]]
 
-[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Uncommon"]
-[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Common"]
-[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Rare"]
-[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Epic"]
-[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Legendary"]
-[editable path="Cameras/HUB/MarginContainer/HBoxContainer/V_Places/V_Mythic"]
+[node name="Armadillidium vulgare" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+sprite_position = Vector2i(1, 3)
+pattern = [[1], [1], [1], [1]]
+color = "blue"
+
+[node name="Trachelipus rathkii" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+position = Vector2(341.62, -247.92)
+sprite_position = Vector2i(2, 3)
+
+[node name="Porcellio laevis" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+sprite_position = Vector2i(3, 3)
+
+[node name="Armadillidium nasatum" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+sprite_position = Vector2i(4, 3)
+
+[node name="Cylisticus convexus" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+sprite_position = Vector2i(5, 3)
+
+[node name="Armadillidium klugii" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+sprite_position = Vector2i(0, 4)
+
+[node name="Haplochromatosis species" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+sprite_position = Vector2i(1, 4)
+
+[node name="Armadillidium gestroi" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+sprite_position = Vector2i(2, 4)
+
+[node name="Porcellio expansus species2" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+sprite_position = Vector2i(3, 4)
+
+[node name="Porcellio magnificus" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+sprite_position = Vector2i(4, 4)
+
+[node name="Titanillus draconis" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+sprite_position = Vector2i(5, 4)
+
+[node name="Sauvegarde" type="Node2D" parent="Général/Global"]
+script = ExtResource("8_314rx")
+
+[node name="Money" type="Node2D" parent="Général/Global"]
+
+[connection signal="pressed" from="Général/Main page/Main/Control/Main page/Places/Cloportes" to="Général/Main page/Main/Control/Main page" method="_on_cloportes_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Main page/Move right/Right" to="Général/Main page/Main/Control/Main page" method="_on_right_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Main page/Menu/Capture" to="Général/Main page/Main/Control/Main page" method="_on_capture_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Main page/Menu/Options/Options" to="Général/Main page/Main/Control/Main page" method="_on_options_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Main page/Menu/Options/Quitter" to="Général/Main page/Main/Control/Main page" method="_on_quitter_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Option page/Menu/Reset save" to="Général/Main page/Main/Control/Option page" method="_on_reset_save_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Option page/Menu/Home" to="Général/Main page/Main/Control/Option page" method="_on_home_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Reset page/VBoxContainer/HBoxContainer/Tout supprimer" to="Général/Main page/Main/Control/Reset page" method="_on_tout_supprimer_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Reset page/VBoxContainer/HBoxContainer/Annuler" to="Général/Main page/Main/Control/Reset page" method="_on_annuler_pressed"]
+[connection signal="timeout" from="Général/Main page/Main/Control/Reset done page/Label/Timer" to="Général/Main page/Main/Control/Reset done page" method="_on_timer_timeout"]
+[connection signal="pressed" from="Général/Capture/Control/Main page/Hint button" to="Général/Capture/Control/Main page" method="_on_hint_button_pressed"]
+[connection signal="timeout" from="Général/Capture/Control/Main page/Stamina/Timer" to="Général/Capture/Control/Main page" method="_on_timer_timeout"]
+[connection signal="pressed" from="Général/Capture/Control/Main page/HBoxContainer/Quit" to="Général/Capture/Control/Main page" method="_on_quit_pressed"]
+[connection signal="pressed" from="Général/Capture/Control/Game end page/Menu/Rejouer" to="Général/Capture/Control/Main page" method="_on_rejouer_pressed"]
+[connection signal="pressed" from="Général/Capture/Control/Game end page/Menu/Fin" to="Général/Capture/Control/Main page" method="_on_fin_pressed"]
