@@ -1,15 +1,14 @@
 extends Node2D
 
-@onready var coin_timer: Timer = $"Coin timer"
 @onready var coins_label = get_tree().root.get_node("Main/Général/Main page/Main/Control/Main page/Money/Coins label")
 
 var coins_per_sec: int = 0
 
 func get_money() -> int:
-	return global_save.get_value(global_save.save_paths["money"], "Coins", 0)
+	return GlobalSave.get_value(GlobalSave.save_paths["money"], "Coins", 0)
 
 func set_money(amount: int):
-	global_save.set_value(global_save.save_paths["money"], "Coins", amount)
+	GlobalSave.set_value(GlobalSave.save_paths["money"], "Coins", amount)
 	print("Coins: ", amount)
 
 func add_money(quantity: int):
@@ -20,9 +19,9 @@ func remove_money(quantity: int):
 
 func _on_coin_timer_timeout() -> void:
 	# Get total coins
-	var total_coins = global_save.get_value(global_save.save_paths["money"], "Coins")
+	var total_coins = GlobalSave.get_value(GlobalSave.save_paths["money"], "Coins")
 	# Get creatures infos
-	var creature_data = global_save.get_value(global_save.save_paths["creature"])
+	var creature_data = GlobalSave.get_value(GlobalSave.save_paths["creature"])
 	if creature_data.keys():
 		var total_gain_per_sec = 0
 		var creatures = get_tree().get_nodes_in_group("Creatures")
@@ -37,7 +36,7 @@ func _on_coin_timer_timeout() -> void:
 					total_gain_per_sec += gain_per_sec
 		# Update total coin
 		total_coins += total_gain_per_sec
-		global_save.set_value(global_save.save_paths["money"], "Coins", total_coins)
+		GlobalSave.set_value(GlobalSave.save_paths["money"], "Coins", total_coins)
 		
 		# Mise à jour de l'UI
 		coins_label = get_tree().root.get_node("Main/Général/Main page/Main/Control/Main page/Money/Coins label")

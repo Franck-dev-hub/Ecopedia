@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1bg60mvhfipn"]
+[gd_scene load_steps=5 format=3 uid="uid://b1bg60mvhfipn"]
 
+[ext_resource type="Script" path="res://script/terrarium/terrarium_creature_scene.gd" id="1_3k0vi"]
 [ext_resource type="FontFile" uid="uid://bga5ibesh7gv1" path="res://assets/fonts/PixelOperator8.ttf" id="1_04eph"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hy562"]
@@ -9,8 +10,9 @@ default_font = ExtResource("1_04eph")
 default_font_size = 24
 Button/styles/focus = SubResource("StyleBoxEmpty_hy562")
 
-[node name="Terrarium creature" type="Camera2D"]
+[node name="Terrarium creature" type="Camera2D" groups=["Terrarium_camera"]]
 anchor_mode = 0
+script = ExtResource("1_3k0vi")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -31,9 +33,12 @@ grow_vertical = 2
 
 [node name="Creature count" type="Label" parent="Control/Main page"]
 layout_mode = 1
-offset_right = 40.0
-offset_bottom = 24.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 51.0
+grow_horizontal = 2
 text = "Creature: 0"
+autowrap_mode = 2
 
 [node name="Change page" type="HBoxContainer" parent="Control/Main page"]
 layout_mode = 1
@@ -46,13 +51,13 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Left" type="Button" parent="Control/Main page/Change page"]
+[node name="Terrarium Left" type="Button" parent="Control/Main page/Change page"]
 custom_minimum_size = Vector2(50, 80)
 layout_mode = 2
 size_flags_horizontal = 2
 text = "<"
 
-[node name="Right" type="Button" parent="Control/Main page/Change page"]
+[node name="Terrarium Right" type="Button" parent="Control/Main page/Change page"]
 custom_minimum_size = Vector2(50, 80)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -83,3 +88,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Fin
 "
+
+[connection signal="pressed" from="Control/Main page/Change page/Terrarium Left" to="." method="_on_terrarium_left_pressed"]
+[connection signal="pressed" from="Control/Main page/Change page/Terrarium Right" to="." method="_on_terrarium_right_pressed"]
+[connection signal="pressed" from="Control/Main page/Menu/Home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="Control/Main page/Menu/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Control/Main page/Menu/End" to="." method="_on_end_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bcdk43qj3bg31"]
+[gd_scene load_steps=29 format=3 uid="uid://bcdk43qj3bg31"]
 
 [ext_resource type="FontFile" uid="uid://bga5ibesh7gv1" path="res://assets/fonts/PixelOperator8.ttf" id="1_dcu8g"]
 [ext_resource type="Script" path="res://script/control/control_main_page.gd" id="2_p63oh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://script/control/control_reset_page.gd" id="4_hyqrm"]
 [ext_resource type="PackedScene" uid="uid://c0q6e7vdgcqhm" path="res://scene/templates/creature.tscn" id="5_asln8"]
 [ext_resource type="Script" path="res://script/control/control_reset_done_page.gd" id="5_xu3of"]
+[ext_resource type="Script" path="res://script/global/global_terrarium.gd" id="6_yeqnp"]
 [ext_resource type="Script" path="res://script/gameplay/gameplay_main.gd" id="7_1selt"]
 [ext_resource type="Script" path="res://script/global/global_backup.gd" id="8_314rx"]
 [ext_resource type="Script" path="res://script/global/global_capture_cost.gd" id="9_myrhn"]
@@ -255,7 +256,7 @@ text = "Quitter"
 [node name="Option page" type="Control" parent="Général/Main page/Main/Control"]
 visible = false
 anchors_preset = 0
-offset_right = 470.0
+offset_right = 438.0
 offset_bottom = 1003.0
 script = ExtResource("3_ey0g0")
 
@@ -280,7 +281,7 @@ text = "Home"
 [node name="Reset page" type="Control" parent="Général/Main page/Main/Control"]
 visible = false
 anchors_preset = 0
-offset_right = 470.0
+offset_right = 438.0
 offset_bottom = 1003.0
 script = ExtResource("4_hyqrm")
 
@@ -314,6 +315,7 @@ text = "Annuler
 "
 
 [node name="Reset done page" type="Control" parent="Général/Main page/Main/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -342,14 +344,45 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Terrarium" type="Node2D" parent="Général"]
+script = ExtResource("6_yeqnp")
 
 [node name="Cloportes" type="Node2D" parent="Général/Terrarium"]
 
-[node name="Porcellio laevis" parent="Général/Terrarium/Cloportes" groups=["Cameras"] instance=ExtResource("2_u84gi")]
+[node name="Porcellio scaber" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
 position = Vector2(448, 0)
 
-[node name="Porcellio scaber" parent="Général/Terrarium/Cloportes" groups=["Cameras"] instance=ExtResource("2_u84gi")]
+[node name="Armadillidium vulgare" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
 position = Vector2(896, 0)
+
+[node name="Trachelipus rathkii" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
+position = Vector2(1344, 0)
+
+[node name="Porcellio laevis" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
+position = Vector2(1792, 0)
+
+[node name="Armadillidium nasatum" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
+position = Vector2(2240, 0)
+
+[node name="Cylisticus convexus" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
+position = Vector2(2688, 0)
+
+[node name="Armadillidium klugii" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
+position = Vector2(3136, 0)
+
+[node name="Haplochromatosis" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
+position = Vector2(3584, 0)
+
+[node name="Armadillidium gestroi" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
+position = Vector2(4032, 0)
+
+[node name="Porcellio expansus" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
+position = Vector2(4480, 0)
+
+[node name="Porcellio magnificus" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
+position = Vector2(4928, 0)
+
+[node name="Titanillus draconis" parent="Général/Terrarium/Cloportes" instance=ExtResource("2_u84gi")]
+position = Vector2(5376, 0)
 
 [node name="Capture" type="Camera2D" parent="Général" groups=["Cameras"]]
 position = Vector2(0, -1013)
@@ -562,7 +595,7 @@ autostart = true
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Places/Fourmis" to="Général/Main page/Main/Control/Main page" method="_on_fourmis_pressed"]
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Places/Iules" to="Général/Main page/Main/Control/Main page" method="_on_iules_pressed"]
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Places/Araignees" to="Général/Main page/Main/Control/Main page" method="_on_araignees_pressed"]
-[connection signal="pressed" from="Général/Main page/Main/Control/Main page/Move right/Right" to="Général/Main page/Main/Control/Main page" method="_on_right_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Main page/Move right/Right" to="Général/Terrarium" method="_on_right_pressed"]
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Menu/Capture" to="Général/Main page/Main/Control/Main page" method="_on_capture_pressed"]
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Menu/Options/Options" to="Général/Main page/Main/Control/Main page" method="_on_options_pressed"]
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Menu/Options/Quitter" to="Général/Main page/Main/Control/Main page" method="_on_quitter_pressed"]

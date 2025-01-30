@@ -12,14 +12,15 @@ config_version=5
 
 config/name="Ecopedia"
 run/main_scene="res://scene/main.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 run/max_fps=60
 
 [autoload]
 
-global_save="*res://script/global/global_backup.gd"
-global_money="*res://script/global/global_money.gd"
-global_capture_cost="*res://script/global/global_capture_cost.gd"
+GlobalSave="*res://script/global/global_backup.gd"
+GlobalMoney="*res://script/global/global_money.gd"
+GlobalCaptureCost="*res://script/global/global_capture_cost.gd"
+GlobalTerrarium="*res://script/global/global_terrarium.gd"
 
 [display]
 
@@ -48,6 +49,7 @@ folder_colors={
 
 Creatures=""
 Cameras=""
+Terrarium_camera=""
 
 [input]
 

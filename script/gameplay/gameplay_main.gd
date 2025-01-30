@@ -3,7 +3,6 @@ extends Control
 #region Variables
 
 # Pages
-@onready var main_page: Control = $"."
 @onready var game_end_page: Control = $"../Game end page"
 
 # Labels
@@ -11,6 +10,8 @@ extends Control
 
 # Buttons
 @onready var quit_button: Button = $HBoxContainer/Quit
+@onready var rejouer: Button = $"../Game end page/Menu/Rejouer"
+@onready var h_box_container: HBoxContainer = $HBoxContainer
 
 # Timers
 @onready var stamina_timer: Timer = $Stamina/Timer
@@ -92,7 +93,6 @@ var creature_by_rarity: Dictionary = {
 
 #region Game Lifecycle
 func _ready() -> void:
-	print("Display size in px: ", DisplayServer.screen_get_size())
 	game_end_page.visible = false
 	pre_load_rarity()
 	randomize()
@@ -138,6 +138,7 @@ func update_stamina() -> void:
 	stamina_label.text = "Stamina: " + str(stamina)
 
 func reveal_after_play_again():
+	h_box_container.visible = true
 	hint_button.visible = true
 	quit_button.visible = true
 	creature_label.visible = true
@@ -154,9 +155,14 @@ func game_end():
 		get_tree().quit()
 
 func discover(win: bool):
+	if GlobalSave.get_value(GlobalSave.save_paths["money"], "Coins", 0) <= GlobalSave.get_value(GlobalSave.save_paths["capture_cost"], "Cloportes"):
+		rejouer.visible = false
+	else:
+		rejouer.visible = true
+	
 	# Hide elements before ending the game
 	hint_button.visible = false
-	quit_button.visible = false
+	h_box_container.visible = false
 	creature_label.visible = false
 	
 	# Hide layers
@@ -167,21 +173,21 @@ func discover(win: bool):
 
 func save(win: bool):
 	if win:
-		if global_save.get_value(global_save.save_paths["creature"], current_creature):
-			var current_value = global_save.get_value(global_save.save_paths["creature"], current_creature)
+		if GlobalSave.get_value(GlobalSave.save_paths["creature"], current_creature):
+			var current_value = GlobalSave.get_value(GlobalSave.save_paths["creature"], current_creature)
 			current_value += 1
-			global_save.set_value(global_save.save_paths["creature"], current_creature, current_value)
+			GlobalSave.set_value(GlobalSave.save_paths["creature"], current_creature, current_value)
 			print(current_creature, ": ", current_value)
 		else:
 			var current_value = 1
-			global_save.set_value(global_save.save_paths["creature"], current_creature, current_value)
+			GlobalSave.set_value(GlobalSave.save_paths["creature"], current_creature, current_value)
 			print(current_creature, ": ", current_value)
 
 #endregion
 
 #region Button Handlers
 func _on_rejouer_pressed() -> void:
-	print("Play again")
+	GlobalTerrarium.main_page._on_cloportes_pressed()
 
 	reset_game_state()
 
