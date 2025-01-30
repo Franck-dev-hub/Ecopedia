@@ -118,19 +118,15 @@ func handle_left_click():
 			var tile_creature = creature_layer.get_cell_tile_data(cell)
 			if foreground_layer.get_cell_tile_data(cell):
 				stamina -= 1
-				print(stamina)
 				update_stamina()
 
 			if tile_creature:
 				tile_count += 1
 				if tile_count == total_tiles:
 					discover(true)
-
-			# Erase the clicked tile
-			print("Erasing tile at position: ", cell)
+					
 			foreground_layer.erase_cell(cell)
-
-		# End game if stamina is 0
+			
 		if stamina == 0:
 			discover(false)
 
@@ -171,14 +167,14 @@ func discover(win: bool):
 
 func save(win: bool):
 	if win:
-		if Global_save.get_value(Global_save.save_paths["creature"], current_creature):
-			var current_value = Global_save.get_value(Global_save.save_paths["creature"], current_creature)
+		if global_save.get_value(global_save.save_paths["creature"], current_creature):
+			var current_value = global_save.get_value(global_save.save_paths["creature"], current_creature)
 			current_value += 1
-			Global_save.set_value(Global_save.save_paths["creature"], current_creature, current_value)
+			global_save.set_value(global_save.save_paths["creature"], current_creature, current_value)
 			print(current_creature, ": ", current_value)
 		else:
 			var current_value = 1
-			Global_save.set_value(Global_save.save_paths["creature"], current_creature, current_value)
+			global_save.set_value(global_save.save_paths["creature"], current_creature, current_value)
 			print(current_creature, ": ", current_value)
 
 #endregion

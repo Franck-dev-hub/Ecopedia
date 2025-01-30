@@ -1,4 +1,4 @@
-class_name Creature extends Node2D
+extends Node2D
 
 @export var sprite_position: Vector2i = Vector2i(0, 0)
 @export var pattern: Array = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]

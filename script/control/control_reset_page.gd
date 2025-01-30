@@ -13,7 +13,7 @@ extends Control
 
 #region Menu
 func _on_tout_supprimer_pressed() -> void:
-	Global_save.reset_save()
+	global_save.reset_save()
 	timer.start()
 	reset_done_page.visible = true
 	reset_page.visible = false

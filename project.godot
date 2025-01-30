@@ -10,14 +10,16 @@ config_version=5
 
 [application]
 
-config/name="Ecotopia"
+config/name="Ecopedia"
 run/main_scene="res://scene/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
 
 [autoload]
 
-Global_save="*res://script/global/sauvegarde.gd"
+global_save="*res://script/global/global_backup.gd"
+global_money="*res://script/global/global_money.gd"
+global_capture_cost="*res://script/global/global_capture_cost.gd"
 
 [display]
 
@@ -30,7 +32,7 @@ window/handheld/orientation=1
 
 [dotnet]
 
-project/assembly_name="Ecotopia"
+project/assembly_name="Ecopedia"
 
 [file_customization]
 

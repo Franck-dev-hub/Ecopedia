@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bcdk43qj3bg31"]
+[gd_scene load_steps=28 format=3 uid="uid://bcdk43qj3bg31"]
 
 [ext_resource type="FontFile" uid="uid://bga5ibesh7gv1" path="res://assets/fonts/PixelOperator8.ttf" id="1_dcu8g"]
 [ext_resource type="Script" path="res://script/control/control_main_page.gd" id="2_p63oh"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://c0q6e7vdgcqhm" path="res://scene/templates/creature.tscn" id="5_asln8"]
 [ext_resource type="Script" path="res://script/control/control_reset_done_page.gd" id="5_xu3of"]
 [ext_resource type="Script" path="res://script/gameplay/gameplay_main.gd" id="7_1selt"]
-[ext_resource type="Script" path="res://script/global/sauvegarde.gd" id="8_314rx"]
+[ext_resource type="Script" path="res://script/global/global_backup.gd" id="8_314rx"]
+[ext_resource type="Script" path="res://script/global/global_capture_cost.gd" id="9_myrhn"]
+[ext_resource type="Script" path="res://script/global/global_money.gd" id="11_w4ogf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w3p7b"]
 
@@ -168,8 +170,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = 198.5
-offset_bottom = 346.5
+offset_top = 148.5
+offset_bottom = 296.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -185,7 +187,7 @@ text = "Fourmis"
 layout_mode = 2
 text = "Iules"
 
-[node name="Araignées" type="Button" parent="Général/Main page/Main/Control/Main page/Places"]
+[node name="Araignees" type="Button" parent="Général/Main page/Main/Control/Main page/Places"]
 layout_mode = 2
 text = "Araignées"
 
@@ -198,7 +200,7 @@ offset_left = -210.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="Coins" type="Label" parent="Général/Main page/Main/Control/Main page/Money"]
+[node name="Coins label" type="Label" parent="Général/Main page/Main/Control/Main page/Money"]
 layout_mode = 2
 text = "Pièces: 500"
 
@@ -477,53 +479,89 @@ tile_set = ExtResource("4_agfm4")
 visible = false
 
 [node name="Creatures" type="Node2D" parent="Général/Global"]
+script = ExtResource("9_myrhn")
 
-[node name="Porcellio scaber" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+[node name="Cloportes" type="Node2D" parent="Général/Global/Creatures"]
+
+[node name="Porcellio scaber" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(0, 3)
 pattern = [[1, 1, 1, 1]]
 
-[node name="Armadillidium vulgare" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+[node name="Armadillidium vulgare" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(1, 3)
 pattern = [[1], [1], [1], [1]]
-color = "blue"
 
-[node name="Trachelipus rathkii" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
-position = Vector2(341.62, -247.92)
+[node name="Trachelipus rathkii" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(2, 3)
+pattern = [[1, 1], [1, 1]]
 
-[node name="Porcellio laevis" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+[node name="Porcellio laevis" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(3, 3)
+pattern = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+coin_value = 2
+rarity = "Peu_commun"
 
-[node name="Armadillidium nasatum" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+[node name="Armadillidium nasatum" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(4, 3)
+pattern = [[1, 1, 0], [0, 1, 1]]
+coin_value = 2
+rarity = "Peu_commun"
 
-[node name="Cylisticus convexus" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+[node name="Cylisticus convexus" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(5, 3)
+pattern = [[1, 1, 1, 1]]
+coin_value = 2
+rarity = "Peu_commun"
 
-[node name="Armadillidium klugii" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+[node name="Armadillidium klugii" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(0, 4)
+pattern = [[1], [1], [1]]
+coin_value = 3
+rarity = "Rare"
 
-[node name="Haplochromatosis species" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+[node name="Haplochromatosis" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(1, 4)
+pattern = [[1, 1, 1]]
+coin_value = 3
+rarity = "Rare"
 
-[node name="Armadillidium gestroi" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+[node name="Armadillidium gestroi" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(2, 4)
+pattern = [[1, 1], [0, 1]]
+coin_value = 3
+rarity = "Epic"
 
-[node name="Porcellio expansus species2" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+[node name="Porcellio expansus" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(3, 4)
+pattern = [[1, 0], [0, 1], [0, 1]]
+coin_value = 3
+rarity = "Epic"
 
-[node name="Porcellio magnificus" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+[node name="Porcellio magnificus" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(4, 4)
+pattern = [[1, 0, 0], [0, 1, 1]]
+coin_value = 4
+rarity = "Légendaire"
 
-[node name="Titanillus draconis" parent="Général/Global/Creatures" groups=["Creatures"] instance=ExtResource("5_asln8")]
+[node name="Titanillus draconis" parent="Général/Global/Creatures/Cloportes" groups=["Creatures"] instance=ExtResource("5_asln8")]
 sprite_position = Vector2i(5, 4)
+pattern = [[0, 1, 0], [1, 0, 1]]
+coin_value = 4
+rarity = "Mythique"
 
 [node name="Sauvegarde" type="Node2D" parent="Général/Global"]
 script = ExtResource("8_314rx")
 
 [node name="Money" type="Node2D" parent="Général/Global"]
+script = ExtResource("11_w4ogf")
+
+[node name="Coin timer" type="Timer" parent="Général/Global/Money"]
+autostart = true
 
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Places/Cloportes" to="Général/Main page/Main/Control/Main page" method="_on_cloportes_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Main page/Places/Fourmis" to="Général/Main page/Main/Control/Main page" method="_on_fourmis_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Main page/Places/Iules" to="Général/Main page/Main/Control/Main page" method="_on_iules_pressed"]
+[connection signal="pressed" from="Général/Main page/Main/Control/Main page/Places/Araignees" to="Général/Main page/Main/Control/Main page" method="_on_araignees_pressed"]
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Move right/Right" to="Général/Main page/Main/Control/Main page" method="_on_right_pressed"]
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Menu/Capture" to="Général/Main page/Main/Control/Main page" method="_on_capture_pressed"]
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Menu/Options/Options" to="Général/Main page/Main/Control/Main page" method="_on_options_pressed"]
@@ -538,3 +576,4 @@ script = ExtResource("8_314rx")
 [connection signal="pressed" from="Général/Capture/Control/Main page/HBoxContainer/Quit" to="Général/Capture/Control/Main page" method="_on_quit_pressed"]
 [connection signal="pressed" from="Général/Capture/Control/Game end page/Menu/Rejouer" to="Général/Capture/Control/Main page" method="_on_rejouer_pressed"]
 [connection signal="pressed" from="Général/Capture/Control/Game end page/Menu/Fin" to="Général/Capture/Control/Main page" method="_on_fin_pressed"]
+[connection signal="timeout" from="Général/Global/Money/Coin timer" to="Général/Global/Money" method="_on_coin_timer_timeout"]
