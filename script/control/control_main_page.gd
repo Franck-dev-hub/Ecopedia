@@ -19,6 +19,7 @@ extends Control
 @onready var iules: Button = $Places/Iules
 @onready var araignees: Button = $"Places/Araignees"
 @onready var rejouer: Button = $"../../../../Capture/Control/Game end page/Menu/Rejouer"
+@onready var right: Button = $"Move right/Right"
 
 #endregion
 
@@ -56,8 +57,10 @@ func initialise():
 func _on_capture_pressed():
 	if places.visible:
 		places.visible = false
+		right.visible = true
 	elif not places.visible:
 		places.visible = true
+		right.visible = false
 	else:
 		return "Capture button error"
 
@@ -67,7 +70,7 @@ func _on_options_pressed():
 
 func _on_quitter_pressed() -> void:
 	get_tree().quit()
-	
+
 #endregion
 
 #region creatures
@@ -77,7 +80,7 @@ func _on_cloportes_pressed() -> void:
 		rejouer.visible = false
 	else:
 		rejouer.visible = true
-		GlobalTerrarium.switch_to_camera(camera_capture)
+		camera_capture.make_current()
 		GlobalMoney.remove_money(capture_cloportes_value)
 		capture_cloportes_value += 5
 		GlobalSave.set_value(GlobalSave.save_paths["capture_cost"], "Cloportes", capture_cloportes_value)
@@ -86,33 +89,33 @@ func _on_fourmis_pressed() -> void:
 	pass
 	#var capture_fourmis_value = GlobalSave.get_value(GlobalSave.save_paths["capture_cost"], "Fourmis")
 	#if GlobalSave.get_value(GlobalSave.save_paths["money"], "Coins", 0) <= capture_fourmis_value:
-		#pass
+	#    pass
 	#else:
-		#switch_to_camera(camera_capture)
-		#GlobalMoney.remove_money(capture_fourmis_value)
-		#capture_fourmis_value += 5
-		#GlobalSave.set_value(GlobalSave.save_paths["capture_cost"], "Fourmis", capture_fourmis_value)
+	#    camera_capture.make_current()
+	#    GlobalMoney.remove_money(capture_fourmis_value)
+	#    capture_fourmis_value += 5
+	#    GlobalSave.set_value(GlobalSave.save_paths["capture_cost"], "Fourmis", capture_fourmis_value)
 
 func _on_iules_pressed() -> void:
 	pass
 	#var capture_iules_value = GlobalSave.get_value(GlobalSave.save_paths["capture_cost"], "Iules")
 	#if GlobalSave.get_value(GlobalSave.save_paths["money"], "Coins", 0) <= capture_iules_value:
-		#pass
+	#    pass
 	#else:
-		#switch_to_camera(camera_capture)
-		#GlobalMoney.remove_money(capture_iules_value)
-		#capture_iules_value += 5
-		#GlobalSave.set_value(GlobalSave.save_paths["capture_cost"], "Iules", capture_iules_value)
+	#    camera_capture.make_current()
+	#    GlobalMoney.remove_money(capture_iules_value)
+	#    capture_iules_value += 5
+	#    GlobalSave.set_value(GlobalSave.save_paths["capture_cost"], "Iules", capture_iules_value)
 
 func _on_araignees_pressed() -> void:
 	pass
 	#var capture_araignees_value = GlobalSave.get_value(GlobalSave.save_paths["capture_cost"], "Araignees")
 	#if GlobalSave.get_value(GlobalSave.save_paths["money"], "Coins", 0) <= capture_araignees_value:
-		#pass
+	#    pass
 	#else:
-		#switch_to_camera(camera_capture)
-		#GlobalMoney.remove_money(capture_araignees_value)
-		#capture_araignees_value += 5
-		#GlobalSave.set_value(GlobalSave.save_paths["capture_cost"], "Araignees", capture_araignees_value)
+	#    camera_capture.make_current()
+	#    GlobalMoney.remove_money(capture_araignees_value)
+	#    capture_araignees_value += 5
+	#    GlobalSave.set_value(GlobalSave.save_paths["capture_cost"], "Araignees", capture_araignees_value)
 
-#endregion
+	#endregion

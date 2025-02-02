@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Ecopedia"
 run/main_scene="res://scene/main.tscn"
-config/features=PackedStringArray("4.3", "C#", "Forward Plus")
+config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
 
 [autoload]
@@ -41,8 +41,9 @@ folder_colors={
 "res://assets/": "red",
 "res://builds/": "orange",
 "res://misc/": "yellow",
-"res://scene/": "green",
-"res://script/": "teal"
+"res://ressources/": "green",
+"res://scene/": "teal",
+"res://script/": "blue"
 }
 
 [global_group]

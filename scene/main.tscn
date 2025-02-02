@@ -1,10 +1,13 @@
-[gd_scene load_steps=29 format=3 uid="uid://bcdk43qj3bg31"]
+[gd_scene load_steps=34 format=3 uid="uid://bcdk43qj3bg31"]
 
 [ext_resource type="FontFile" uid="uid://bga5ibesh7gv1" path="res://assets/fonts/PixelOperator8.ttf" id="1_dcu8g"]
+[ext_resource type="StyleBox" uid="uid://fwy4inyybp0g" path="res://ressources/hover_button.tres" id="1_oun6v"]
+[ext_resource type="StyleBox" uid="uid://dwp3kygr45ree" path="res://ressources/normal_button.tres" id="2_6vpr7"]
 [ext_resource type="Script" path="res://script/control/control_main_page.gd" id="2_p63oh"]
 [ext_resource type="PackedScene" uid="uid://b1bg60mvhfipn" path="res://scene/templates/terrarium_creature.tscn" id="2_u84gi"]
 [ext_resource type="Script" path="res://script/control/control_options_page.gd" id="3_ey0g0"]
 [ext_resource type="TileSet" uid="uid://c8ulupuday03y" path="res://misc/tres/tile_layer_map.tres" id="4_agfm4"]
+[ext_resource type="PackedScene" uid="uid://coe2swrquye08" path="res://scene/volume_slider.tscn" id="4_cq6gf"]
 [ext_resource type="Script" path="res://script/control/control_reset_page.gd" id="4_hyqrm"]
 [ext_resource type="PackedScene" uid="uid://c0q6e7vdgcqhm" path="res://scene/templates/creature.tscn" id="5_asln8"]
 [ext_resource type="Script" path="res://script/control/control_reset_done_page.gd" id="5_xu3of"]
@@ -13,30 +16,10 @@
 [ext_resource type="Script" path="res://script/global/global_backup.gd" id="8_314rx"]
 [ext_resource type="Script" path="res://script/global/global_capture_cost.gd" id="9_myrhn"]
 [ext_resource type="Script" path="res://script/global/global_money.gd" id="11_w4ogf"]
+[ext_resource type="AudioStream" uid="uid://cqj4me3q2ct6p" path="res://assets/audio/discover.wav" id="12_p0hib"]
+[ext_resource type="PackedScene" uid="uid://1qlckxv40dcb" path="res://scene/sounds.tscn" id="15_qr4p3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w3p7b"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2gjm"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.827451, 0.827451, 0.827451, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0j13t"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.690196, 0.690196, 0.690196, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8mcy"]
 content_margin_left = 5.0
@@ -53,8 +36,8 @@ corner_radius_bottom_left = 4
 default_font = ExtResource("1_dcu8g")
 default_font_size = 24
 Button/styles/focus = SubResource("StyleBoxEmpty_w3p7b")
-Button/styles/hover = SubResource("StyleBoxFlat_i2gjm")
-Button/styles/normal = SubResource("StyleBoxFlat_0j13t")
+Button/styles/hover = ExtResource("1_oun6v")
+Button/styles/normal = ExtResource("2_6vpr7")
 Button/styles/pressed = SubResource("StyleBoxFlat_y8mcy")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipivb"]
@@ -139,6 +122,15 @@ Button/styles/pressed = SubResource("StyleBoxFlat_1kee4")
 default_font = ExtResource("1_dcu8g")
 default_font_size = 20
 Button/styles/focus = SubResource("StyleBoxEmpty_csvgy")
+Button/styles/hover = ExtResource("1_oun6v")
+Button/styles/normal = ExtResource("2_6vpr7")
+
+[sub_resource type="Gradient" id="Gradient_skmsb"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.831373, 0.768627, 0.67451, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qy5wq"]
+gradient = SubResource("Gradient_skmsb")
 
 [node name="Main" type="Node2D"]
 
@@ -152,17 +144,19 @@ anchor_mode = 0
 [node name="Control" type="Control" parent="Général/Main page/Main"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 443.0
-offset_bottom = 1008.0
+offset_left = 25.0
+offset_top = 26.0
+offset_right = 425.0
+offset_bottom = 986.0
 theme = SubResource("Theme_c7tc1")
 
 [node name="Main page" type="Control" parent="Général/Main page/Main/Control"]
 layout_mode = 1
-anchors_preset = 0
-offset_right = 438.0
-offset_bottom = 1003.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_p63oh")
 
 [node name="Places" type="VBoxContainer" parent="Général/Main page/Main/Control/Main page"]
@@ -171,8 +165,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = 148.5
-offset_bottom = 296.5
+offset_top = -387.0
+offset_bottom = 363.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -255,9 +249,12 @@ text = "Quitter"
 
 [node name="Option page" type="Control" parent="Général/Main page/Main/Control"]
 visible = false
-anchors_preset = 0
-offset_right = 438.0
-offset_bottom = 1003.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("3_ey0g0")
 
 [node name="Menu" type="VBoxContainer" parent="Général/Main page/Main/Control/Option page"]
@@ -273,6 +270,33 @@ layout_mode = 2
 size_flags_vertical = 0
 text = "reset save"
 
+[node name="Space" type="Label" parent="Général/Main page/Main/Control/Option page/Menu"]
+layout_mode = 2
+
+[node name="Master label" type="Label" parent="Général/Main page/Main/Control/Option page/Menu"]
+layout_mode = 2
+text = "Master volume"
+
+[node name="Master slider" parent="Général/Main page/Main/Control/Option page/Menu" instance=ExtResource("4_cq6gf")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="Music label" type="Label" parent="Général/Main page/Main/Control/Option page/Menu"]
+layout_mode = 2
+text = "Music volume"
+
+[node name="Music slider" parent="Général/Main page/Main/Control/Option page/Menu" instance=ExtResource("4_cq6gf")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="SFX label" type="Label" parent="Général/Main page/Main/Control/Option page/Menu"]
+layout_mode = 2
+text = "SFX volume"
+
+[node name="SFX slider" parent="Général/Main page/Main/Control/Option page/Menu" instance=ExtResource("4_cq6gf")]
+layout_mode = 2
+bus_name = "SFX"
+
 [node name="Home" type="Button" parent="Général/Main page/Main/Control/Option page/Menu"]
 layout_mode = 2
 size_flags_vertical = 10
@@ -280,9 +304,12 @@ text = "Home"
 
 [node name="Reset page" type="Control" parent="Général/Main page/Main/Control"]
 visible = false
-anchors_preset = 0
-offset_right = 438.0
-offset_bottom = 1003.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4_hyqrm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Général/Main page/Main/Control/Reset page"]
@@ -406,23 +433,38 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_1selt")
 
-[node name="Hint button" type="TextureButton" parent="Général/Capture/Control/Main page"]
+[node name="Hint" type="Control" parent="Général/Capture/Control/Main page"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hint button" type="TextureButton" parent="Général/Capture/Control/Main page/Hint"]
 layout_mode = 0
 offset_left = 187.0
 offset_top = 187.0
 offset_right = 251.0
 offset_bottom = 251.0
 
-[node name="Creature" type="Label" parent="Général/Capture/Control/Main page/Hint button"]
+[node name="Creature" type="Label" parent="Général/Capture/Control/Main page/Hint"]
 visible = false
 layout_mode = 0
-offset_left = -128.0
-offset_top = 61.0
-offset_right = 192.0
-offset_bottom = 128.0
+offset_left = 59.0
+offset_top = 248.0
+offset_right = 379.0
+offset_bottom = 315.0
 text = "Creature"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Hint Panel" type="TextureRect" parent="Général/Capture/Control/Main page/Hint"]
+visible = false
+layout_mode = 1
+offset_right = 307.0
+offset_bottom = 128.0
+texture = SubResource("GradientTexture2D_qy5wq")
 
 [node name="Stamina" type="Label" parent="Général/Capture/Control/Main page"]
 layout_mode = 1
@@ -434,26 +476,10 @@ text = "Coups restant: 10"
 wait_time = 1.5
 one_shot = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Général/Capture/Control/Main page"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -29.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Options" type="Button" parent="Général/Capture/Control/Main page/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Options
-"
-
-[node name="Quit" type="Button" parent="Général/Capture/Control/Main page/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Quitter"
+[node name="Discover sound" type="AudioStreamPlayer" parent="Général/Capture/Control/Main page"]
+stream = ExtResource("12_p0hib")
+volume_db = 24.0
+bus = &"SFX"
 
 [node name="Game end page" type="Control" parent="Général/Capture/Control"]
 layout_mode = 1
@@ -591,6 +617,8 @@ script = ExtResource("11_w4ogf")
 [node name="Coin timer" type="Timer" parent="Général/Global/Money"]
 autostart = true
 
+[node name="Sounds" parent="Général/Global" instance=ExtResource("15_qr4p3")]
+
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Places/Cloportes" to="Général/Main page/Main/Control/Main page" method="_on_cloportes_pressed"]
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Places/Fourmis" to="Général/Main page/Main/Control/Main page" method="_on_fourmis_pressed"]
 [connection signal="pressed" from="Général/Main page/Main/Control/Main page/Places/Iules" to="Général/Main page/Main/Control/Main page" method="_on_iules_pressed"]
@@ -604,9 +632,8 @@ autostart = true
 [connection signal="pressed" from="Général/Main page/Main/Control/Reset page/VBoxContainer/HBoxContainer/Tout supprimer" to="Général/Main page/Main/Control/Reset page" method="_on_tout_supprimer_pressed"]
 [connection signal="pressed" from="Général/Main page/Main/Control/Reset page/VBoxContainer/HBoxContainer/Annuler" to="Général/Main page/Main/Control/Reset page" method="_on_annuler_pressed"]
 [connection signal="timeout" from="Général/Main page/Main/Control/Reset done page/Label/Timer" to="Général/Main page/Main/Control/Reset done page" method="_on_timer_timeout"]
-[connection signal="pressed" from="Général/Capture/Control/Main page/Hint button" to="Général/Capture/Control/Main page" method="_on_hint_button_pressed"]
+[connection signal="pressed" from="Général/Capture/Control/Main page/Hint/Hint button" to="Général/Capture/Control/Main page" method="_on_hint_button_pressed"]
 [connection signal="timeout" from="Général/Capture/Control/Main page/Stamina/Timer" to="Général/Capture/Control/Main page" method="_on_timer_timeout"]
-[connection signal="pressed" from="Général/Capture/Control/Main page/HBoxContainer/Quit" to="Général/Capture/Control/Main page" method="_on_quit_pressed"]
 [connection signal="pressed" from="Général/Capture/Control/Game end page/Menu/Rejouer" to="Général/Capture/Control/Main page" method="_on_rejouer_pressed"]
 [connection signal="pressed" from="Général/Capture/Control/Game end page/Menu/Fin" to="Général/Capture/Control/Main page" method="_on_fin_pressed"]
 [connection signal="timeout" from="Général/Global/Money/Coin timer" to="Général/Global/Money" method="_on_coin_timer_timeout"]

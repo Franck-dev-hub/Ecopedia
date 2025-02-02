@@ -9,9 +9,7 @@ extends Control
 @onready var stamina_label: Label = $Stamina
 
 # Buttons
-@onready var quit_button: Button = $HBoxContainer/Quit
 @onready var rejouer: Button = $"../Game end page/Menu/Rejouer"
-@onready var h_box_container: HBoxContainer = $HBoxContainer
 
 # Timers
 @onready var stamina_timer: Timer = $Stamina/Timer
@@ -36,7 +34,8 @@ var save_dict: Dictionary
 var stamina: int = 10
 
 # Hint system
-@onready var creature_label: Label = $"Hint button/Creature"
+@onready var creature_label: Label = $Hint/Creature
+@onready var hint_panel: TextureRect = $"Hint/Hint Panel"
 var hint_button_pressed: bool = false
 var pattern_rows: int = 0
 var pattern_cols: int = 0
@@ -45,7 +44,7 @@ var hint_open: bool = false
 
 # Creatures management
 @onready var creatures: Node2D = $"../../../Global/Creatures"
-@onready var hint_button: TextureButton = $"Hint button"
+@onready var hint_button: TextureButton = $"Hint/Hint button"
 var current_creature: String = ""
 var tiles_id: Dictionary = {}
 var total_tiles: int = 0
@@ -81,13 +80,16 @@ var rarity_weight: Dictionary = {
 
 # Dictionary to load creatures by rarity
 var creature_by_rarity: Dictionary = {
-		"Commun": [],
-		"Peu_commun": [],
-		"Rare": [],
-		"Epic": [],
-		"Légendaire": [],
-		"Mythique": []
+	"Commun": [],
+	"Peu_commun": [],
+	"Rare": [],
+	"Epic": [],
+	"Légendaire": [],
+	"Mythique": []
 	}
+
+# Music
+@onready var discover_sound: AudioStreamPlayer = $"Discover sound"
 
 #endregion
 
@@ -108,14 +110,14 @@ func _process(_delta: float) -> void:
 func handle_left_click():
 	if Input.is_action_just_pressed("left_click") and not hint_button_pressed:
 		# Get mouse position as tile coordinates
-		var cell = foreground_layer.local_to_map(foreground_layer.get_local_mouse_position())
+		var cell: Vector2i = foreground_layer.local_to_map(foreground_layer.get_local_mouse_position())
 
 		# Process click on tile
 		if cell and not clicked_cells.has(cell):
 			clicked_cells.append(cell)
 
 			# Handle tile actions
-			var tile_creature = creature_layer.get_cell_tile_data(cell)
+			var tile_creature: TileData = creature_layer.get_cell_tile_data(cell)
 			if foreground_layer.get_cell_tile_data(cell):
 				stamina -= 1
 				update_stamina()
@@ -124,9 +126,9 @@ func handle_left_click():
 				tile_count += 1
 				if tile_count == total_tiles:
 					discover(true)
-					
+
 			foreground_layer.erase_cell(cell)
-			
+
 		if stamina == 0:
 			discover(false)
 
@@ -138,9 +140,7 @@ func update_stamina() -> void:
 	stamina_label.text = "Stamina: " + str(stamina)
 
 func reveal_after_play_again():
-	h_box_container.visible = true
 	hint_button.visible = true
-	quit_button.visible = true
 	creature_label.visible = true
 	tilemaps.visible = true
 	game_end_page.visible = false
@@ -155,19 +155,19 @@ func game_end():
 		get_tree().quit()
 
 func discover(win: bool):
+	discover_sound.play()
 	if GlobalSave.get_value(GlobalSave.save_paths["money"], "Coins", 0) <= GlobalSave.get_value(GlobalSave.save_paths["capture_cost"], "Cloportes"):
 		rejouer.visible = false
 	else:
 		rejouer.visible = true
-	
+
 	# Hide elements before ending the game
 	hint_button.visible = false
-	h_box_container.visible = false
 	creature_label.visible = false
-	
+
 	# Hide layers
 	foreground_layer.visible = false
-	
+
 	save(win)
 	erase_layer(foreground_layer, true)
 
@@ -179,7 +179,7 @@ func save(win: bool):
 			GlobalSave.set_value(GlobalSave.save_paths["creature"], current_creature, current_value)
 			print(current_creature, ": ", current_value)
 		else:
-			var current_value = 1
+			var current_value: int = 1
 			GlobalSave.set_value(GlobalSave.save_paths["creature"], current_creature, current_value)
 			print(current_creature, ": ", current_value)
 
@@ -200,15 +200,11 @@ func _on_fin_pressed() -> void:
 	print("return")
 	get_tree().change_scene_to_file("res://scene/main.tscn")
 
-func _on_quit_pressed() -> void:
-	print("quit")
-	get_tree().change_scene_to_file("res://scene/main.tscn")
-
 func _on_timer_timeout() -> void:
 	print("Timer end")
 	foreground_layer.visible = true
 	tilemaps.visible = false
-	game_end() 
+	game_end()
 
 func _on_hint_button_pressed() -> void:
 	if not hint_open:
@@ -217,7 +213,8 @@ func _on_hint_button_pressed() -> void:
 		creature_label.visible = true
 		hint_background_layer.visible = true
 		hint_creature_layer.visible = true
-		
+		hint_panel.visible = true
+
 		# Hide  main infos
 		background_layer.visible = false
 		creature_layer.visible = false
@@ -229,11 +226,12 @@ func _on_hint_button_pressed() -> void:
 		background_layer.visible = true
 		creature_layer.visible = true
 		foreground_layer.visible = true
-		
+
 		# Hide hint
 		creature_label.visible = false
 		hint_background_layer.visible = false
 		hint_creature_layer.visible = false
+		hint_panel.visible = false
 
 #endregion
 
@@ -264,14 +262,14 @@ func spawn_tileset():
 	# Spawn background tiles
 	for x in range(start_map_x, end_map_x):
 		for y in range(start_map_y, end_map_y):
-			var background_x_tile = randi_range(start_background_x_tile, end_background_x_tile)
-			var background_y_tile = randi_range(start_background_y_tile, end_background_y_tile)
+			var background_x_tile: int = randi_range(start_background_x_tile, end_background_x_tile)
+			var background_y_tile: int = randi_range(start_background_y_tile, end_background_y_tile)
 			background_layer.set_cell(Vector2i(x, y), 0, Vector2i(background_x_tile, background_y_tile))
 	# Spawn foreground tiles
 	for x in range(start_map_x, end_map_x):
 		for y in range(start_map_y, end_map_y):
-			var foreground_x_tile = randi_range(start_foreground_x_tile, end_foreground_x_tile)
-			var foreground_y_tile = randi_range(start_foreground_y_tile, end_foreground_y_tile)
+			var foreground_x_tile: int = randi_range(start_foreground_x_tile, end_foreground_x_tile)
+			var foreground_y_tile: int = randi_range(start_foreground_y_tile, end_foreground_y_tile)
 			foreground_layer.set_cell(Vector2i(x, y), 0, Vector2i(foreground_x_tile, foreground_y_tile))
 
 func reset_map():
@@ -305,9 +303,9 @@ func erase_layer(layer, enabled_timer):
 		for j in range(end_map_y + 1):
 			layer.erase_cell(Vector2i(i, j))
 
-func spawn_random_creature():
+func spawn_random_creature() -> void:
 	randomize()
-	var selected_rarity = choose_rarity()
+	var selected_rarity: String = choose_rarity()
 
 	# Ensure creatures for this rarity exist
 	if not creature_by_rarity.has(selected_rarity) or creature_by_rarity[selected_rarity].size() == 0:
@@ -330,14 +328,14 @@ func spawn_random_creature():
 
 	# Calculate the pattern dimensions
 	var pattern_height = pattern.size()
-	var pattern_width = 0
+	var pattern_width: int = 0
 	for row in pattern:
 		pattern_width = max(pattern_width, row.size())
 
 	# Generate random position for placing the pattern
-	var x = randi_range(start_map_x, end_map_x - pattern_width)
-	var y = randi_range(start_map_y, end_map_y - pattern_height)
-	var start_pos = Vector2i(x, y)
+	var x: int = randi_range(start_map_x, end_map_x - pattern_width)
+	var y: int = randi_range(start_map_y, end_map_y - pattern_height)
+	var start_pos: Vector2i = Vector2i(x, y)
 
 	# Update UI with the current creature's name
 	creature_label.text = current_creature
@@ -346,9 +344,9 @@ func spawn_random_creature():
 
 	# Place the pattern at the selected position
 	show_pattern_at_position(pattern, start_pos, current_creature)
-	
+
 func show_pattern_at_position(pattern, start_pos: Vector2i, creature_name: String):
-	var lower_creature_name = creature_name.to_lower()
+	var lower_creature_name: String = creature_name.to_lower()
 
 	# Check if the creature's sprite exists in the tiles dictionary
 	if tiles_id.has(lower_creature_name):
@@ -368,12 +366,12 @@ func show_pattern_at_position(pattern, start_pos: Vector2i, creature_name: Strin
 
 #region Utility Functions
 func choose_rarity() -> String:
-	var total_weight = 0
+	var total_weight: int = 0
 	for weight in rarity_weight.values():
 		total_weight += weight
 
-	var random_value = randf_range(0, total_weight)
-	var cumulative_weight = 0.0
+	var random_value: float = randf_range(0, total_weight)
+	var cumulative_weight: float = 0.0
 	print("Probability: ", int(random_value))
 
 	# Determine rarity based on weighted probabilities
@@ -385,15 +383,16 @@ func choose_rarity() -> String:
 	return "Commun"
 
 func hint(pattern: Array, _creature_name: String, atlas_coords: Vector2i):
+	# Initialize variables
 	hint_button_layer.set_cell(Vector2i(3, 3), 0, atlas_coords)
 	pattern_rows = 0
 	pattern_cols = 0
 	get_atlas_coords = atlas_coords
-	
+
 	# Random background tiles
-	var background_x = randi_range(start_background_x_tile, end_background_x_tile)
-	var background_y = randi_range(start_background_y_tile, end_background_y_tile)
-	var background_atlas_coords = Vector2i(background_x, background_y)
+	var background_x: int = randi_range(start_background_x_tile, end_background_x_tile)
+	var background_y: int = randi_range(start_background_y_tile, end_background_y_tile)
+	var background_atlas_coords: Vector2i = Vector2i(background_x, background_y)
 
 	# Compute pattern size
 	for y in range(pattern.size()):
@@ -404,19 +403,26 @@ func hint(pattern: Array, _creature_name: String, atlas_coords: Vector2i):
 
 	# Compute center position
 	var viewport_size = get_viewport().size
-	var pattern_width = pattern_cols * 64
-	var pattern_height = pattern_rows * 64
+	var pattern_width: int = pattern_cols * 64
+	var pattern_height: int = pattern_rows * 64
 	var start_offset = Vector2i(
 		(viewport_size.x / 2 - pattern_width / 2) / tile_size,
 		(viewport_size.y / 2 - pattern_height / 2) / tile_size + 1
-	)
+		)
 
 	# Display creature + background in the center
 	for y in range(pattern_rows):
 		for x in range(pattern_cols):
-			var tile_pos = Vector2i(x, y) + start_offset
+			var tile_pos: Vector2i = Vector2i(x, y) + start_offset
 			hint_background_layer.set_cell(tile_pos, 0, background_atlas_coords)
 			if pattern[y][x] != 0:
 				hint_creature_layer.set_cell(tile_pos, 0, atlas_coords)
+	
+	# Display hint panel
+	hint_panel.size = Vector2i(pattern_width + 128, pattern_height + 128)
+	hint_panel.position = Vector2i(
+		(start_offset.x * tile_size) - 5 - tile_size,
+		(start_offset.y * tile_size) - 5 - tile_size
+		)
 
 #endregion

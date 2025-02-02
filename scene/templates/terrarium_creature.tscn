@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1bg60mvhfipn"]
+[gd_scene load_steps=8 format=3 uid="uid://b1bg60mvhfipn"]
 
 [ext_resource type="Script" path="res://script/terrarium/terrarium_creature_scene.gd" id="1_3k0vi"]
 [ext_resource type="FontFile" uid="uid://bga5ibesh7gv1" path="res://assets/fonts/PixelOperator8.ttf" id="1_04eph"]
+[ext_resource type="TileSet" uid="uid://c8ulupuday03y" path="res://misc/tres/tile_layer_map.tres" id="2_22pgc"]
+[ext_resource type="StyleBox" uid="uid://fwy4inyybp0g" path="res://ressources/hover_button.tres" id="2_hlfwl"]
+[ext_resource type="StyleBox" uid="uid://dwp3kygr45ree" path="res://ressources/normal_button.tres" id="3_fsnkw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hy562"]
 
@@ -9,18 +12,23 @@
 default_font = ExtResource("1_04eph")
 default_font_size = 24
 Button/styles/focus = SubResource("StyleBoxEmpty_hy562")
+Button/styles/hover = ExtResource("2_hlfwl")
+Button/styles/normal = ExtResource("3_fsnkw")
 
 [node name="Terrarium creature" type="Camera2D" groups=["Terrarium_camera"]]
 anchor_mode = 0
 script = ExtResource("1_3k0vi")
 
+[node name="Terrarium layer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_22pgc")
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 443.0
-offset_bottom = 1008.0
+offset_left = 25.0
+offset_top = 26.0
+offset_right = 425.0
+offset_bottom = 986.0
 theme = SubResource("Theme_oijqw")
 
 [node name="Main page" type="Control" parent="Control"]

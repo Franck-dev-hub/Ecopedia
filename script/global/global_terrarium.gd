@@ -11,50 +11,47 @@ func _ready() -> void:
 	get_cameras()
 
 func get_cameras():
+	main_camera = get_tree().root.get_node("Main/Général/Main page/Main")
+	main_page = get_tree().root.get_node("Main/Général/Main page/Main/Control/Main page")
+	cameras.clear()
+	current_camera = 0
+
 	# Get all creature cameras
 	for camera in get_tree().get_nodes_in_group("Terrarium_camera"):
-		if not cameras.has(camera):
+		if not cameras.has(camera) and is_instance_valid(camera):
 			if GlobalSave.get_value(GlobalSave.save_paths["creature"], camera.name):
 				cameras.append(camera)
 
 	number_of_cameras = cameras.size()
-	if main_camera:
+	if main_camera and is_instance_valid(main_camera):
 		print(main_camera)
-		switch_to_camera(main_camera)
+		main_camera.make_current()
 	else:
 		print("Erreur : main_camera a été supprimée ou est invalide")
-
-
-func switch_to_camera(camera_node: Camera2D):
-	# Disabled all cameras
-	for cam in get_tree().get_nodes_in_group("Cameras"):
-		cam.enabled = false
-		
-	for cam in get_tree().get_nodes_in_group("Terrarium_camera"):
-		cam.enabled = false
-		
-	# Enabled wanted camera
-	camera_node.enabled = true
 
 func switch_terrarium(direction: int, camera_index = null):
 	if cameras.is_empty():
 		print("No cameras found")
 		return
 
-	cameras[current_camera].enabled = false
-
 	if camera_index != null:
 		current_camera = clamp(camera_index, 0, number_of_cameras - 1)
+		if is_instance_valid(cameras[current_camera]):
+			cameras[current_camera].make_current()
+		else:
+			print("Camera at index ", current_camera, " is freed.")
 	elif current_camera == 0 and direction == -1:
-		switch_to_camera(main_camera)
+		if main_camera and is_instance_valid(main_camera):
+			main_camera.make_current()
+		else:
+			print("Erreur : main_camera a été supprimée ou est invalide")
 	else:
 		current_camera = clamp(current_camera + direction, 0, number_of_cameras - 1)
-	cameras[current_camera].enabled = true
+		if is_instance_valid(cameras[current_camera]):
+			cameras[current_camera].make_current()
+		else:
+			print("Camera at index ", current_camera, " is freed.")
 
 func _on_right_pressed() -> void:
 	if cameras.size() != 0:
-		cameras[current_camera].enabled = true
-		
-		# Disable other cameras
-		for camera in get_tree().get_nodes_in_group("Cameras"):
-			camera.enabled = false
+		cameras[current_camera].make_current()
